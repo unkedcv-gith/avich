@@ -6,7 +6,7 @@ export default function MobileBottomNav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['contact', 'differentiators', 'species', 'services', 'about'];
+      const sections = ['contact', 'differentiators', 'team', 'species', 'services', 'about'];
       let current = 'hero';
 
       for (const section of sections) {
@@ -78,11 +78,11 @@ export default function MobileBottomNav() {
           </span>
         </div>
 
-        {/* 4. Por qué / Nosotros */}
+        {/* 4. Equipo / Nosotros */}
         <a
-          href="#differentiators"
+          href="#team"
           className={`flex flex-col items-center justify-center flex-1 py-1 transition-colors ${
-            activeSection === 'differentiators' ? 'text-[#FD8548]' : 'text-gray-400 hover:text-gray-200'
+            activeSection === 'team' ? 'text-[#FD8548]' : 'text-gray-400 hover:text-gray-200'
           }`}
         >
           <ShieldCheck className="w-5 h-5 mb-1" />

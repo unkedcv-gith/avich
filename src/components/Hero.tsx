@@ -12,11 +12,11 @@ export default function Hero() {
           loop 
           muted 
           playsInline 
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-75"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#38307E]/90 to-[#6A00C8]/70 z-10 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#38307E]/70 to-[#6A00C8]/55 z-10 mix-blend-multiply"></div>
       </div>
 
       <div className="relative z-20 text-center px-4 max-w-5xl mx-auto mt-10 md:mt-16 w-full">
