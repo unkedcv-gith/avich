@@ -1,0 +1,6 @@
+{
+  "name": "AVICH - Veterinary Research",
+  "description": "Landing page for AVICH, a Veterinary Contract Research Organization (CRO) in Argentina.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
