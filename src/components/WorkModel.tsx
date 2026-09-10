@@ -1,10 +1,12 @@
 import { motion } from 'motion/react';
 import { Settings, Package, Check, ArrowRight } from 'lucide-react';
+import MolecularBackground from './MolecularBackground';
 
 export default function WorkModel() {
   return (
-    <section id="work-model" className="py-16 md:py-24 bg-[#1a1640]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="work-model" className="py-16 md:py-24 bg-[#1a1640] relative overflow-hidden">
+      <MolecularBackground variant="about" className="opacity-25" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
           <h2 className="text-[#FD8548] font-bold tracking-widest uppercase text-xs sm:text-sm mb-3">El Diferencial</h2>
           <h3 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">

@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { PawPrint, Tractor, CheckCircle2 } from 'lucide-react';
+import MolecularBackground from './MolecularBackground';
 import felinosIcon from '../assets/icons/felinos.svg';
 import caninosIcon from '../assets/icons/caninos.svg';
 import caprinosIcon from '../assets/icons/caprinos.svg';
@@ -24,7 +25,8 @@ export default function Species() {
 
   return (
     <section id="species" className="py-16 md:py-24 bg-[#1a1640] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <MolecularBackground variant="services" className="opacity-25" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-12 md:mb-16">
           <h2 className="text-[#FD8548] font-bold tracking-widest uppercase text-sm mb-3">Especies</h2>
           <h3 className="text-3xl md:text-5xl font-extrabold text-white mb-6">

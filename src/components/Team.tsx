@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import MolecularBackground from './MolecularBackground';
 import jesusPesoa from '../assets/images/jesus_pesoa.png';
 import facundoRomero from '../assets/images/facundo_romero.png';
 import gabrielRojas from '../assets/images/gabriel_rojas.png';
@@ -30,8 +31,9 @@ export default function Team() {
   ];
 
   return (
-    <section id="team" className="py-16 md:py-24 bg-[#1a1640]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="team" className="py-16 md:py-24 bg-[#1a1640] relative overflow-hidden">
+      <MolecularBackground variant="process" className="opacity-25" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="flex flex-col lg:flex-row justify-between items-start gap-8 md:gap-12 mb-10 md:mb-16">
           <div className="max-w-2xl">

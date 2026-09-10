@@ -1,238 +1,246 @@
-import { motion } from 'motion/react';
-import { useId } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface MolecularBackgroundProps {
   variant?: 'about' | 'whyus' | 'services' | 'process';
   className?: string;
 }
 
-// Genera puntos para un hexágono regular centrado en (cx, cy) con radio r
-function getHexPoints(cx: number, cy: number, r: number) {
-  const points = [];
-  for (let i = 0; i < 6; i++) {
-    const angle = (Math.PI / 3) * i - Math.PI / 6;
-    const x = cx + r * Math.cos(angle);
-    const y = cy + r * Math.sin(angle);
-    points.push(`${x.toFixed(2)},${y.toFixed(2)}`);
-  }
-  return points.join(' ');
-}
-
-// Configuración de la red hexagonal inspirada en el logo de AVICH
-const configs = {
-  about: {
-    hexRings: [
-      { cx: 90, cy: 120, r: 44, color: 'grad-purple', strokeWidth: 1.2, fill: 'grad-purple', fillOpacity: 0.02, delay: 0 },
-      { cx: 155, cy: 82, r: 28, color: 'grad-orange', strokeWidth: 1, fill: 'grad-orange', fillOpacity: 0.015, delay: 1.2 },
-      { cx: 155, cy: 158, r: 28, color: '#a83d95', strokeWidth: 1, fill: 'transparent', fillOpacity: 0, delay: 2 },
-      { cx: 35, cy: 152, r: 22, color: '#481b7e', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 3 },
-      { cx: 890, cy: 190, r: 52, color: 'grad-full', strokeWidth: 1.3, fill: 'grad-full', fillOpacity: 0.02, delay: 0.8 },
-      { cx: 970, cy: 144, r: 34, color: 'grad-orange', strokeWidth: 1, fill: '#c87247', fillOpacity: 0.015, delay: 2.2 },
-      { cx: 970, cy: 236, r: 34, color: '#78368c', strokeWidth: 1, fill: 'transparent', fillOpacity: 0, delay: 1.5 },
-      { cx: 810, cy: 236, r: 30, color: 'grad-purple', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 3.5 },
-      { cx: 510, cy: 170, r: 26, color: '#a83d95', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 1.8 },
-      { cx: 220, cy: 450, r: 48, color: 'grad-full', strokeWidth: 1.2, fill: 'grad-full', fillOpacity: 0.02, delay: 1 },
-      { cx: 295, cy: 406, r: 32, color: '#c87247', strokeWidth: 1, fill: 'transparent', fillOpacity: 0, delay: 2.5 },
-      { cx: 820, cy: 470, r: 44, color: 'grad-orange', strokeWidth: 1.1, fill: 'grad-orange', fillOpacity: 0.015, delay: 1.7 },
-      { cx: 886, cy: 432, r: 28, color: '#481b7e', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 3.1 },
-    ],
-    bonds: [
-      { x1: 90, y1: 120, x2: 155, y2: 82, color: '#672985' },
-      { x1: 90, y1: 120, x2: 155, y2: 158, color: '#78368c' },
-      { x1: 90, y1: 120, x2: 35, y2: 152, color: '#481b7e' },
-      { x1: 890, y1: 190, x2: 970, y2: 144, color: '#c87247' },
-      { x1: 890, y1: 190, x2: 970, y2: 236, color: '#8d3588' },
-      { x1: 890, y1: 190, x2: 810, y2: 236, color: '#672985' },
-      { x1: 220, y1: 450, x2: 295, y2: 406, color: '#c87247' },
-      { x1: 820, y1: 470, x2: 886, y2: 432, color: '#a83d95' },
-    ]
-  },
-  whyus: {
-    hexRings: [
-      { cx: 180, cy: 160, r: 54, color: 'grad-full', strokeWidth: 1.4, fill: 'grad-full', fillOpacity: 0.025, delay: 0 },
-      { cx: 265, cy: 110, r: 36, color: 'grad-orange', strokeWidth: 1.1, fill: '#c87247', fillOpacity: 0.015, delay: 1.5 },
-      { cx: 265, cy: 210, r: 36, color: '#78368c', strokeWidth: 1, fill: 'transparent', fillOpacity: 0, delay: 2.5 },
-      { cx: 95, cy: 210, r: 32, color: '#481b7e', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 0.8 },
-      { cx: 820, cy: 280, r: 48, color: 'grad-purple', strokeWidth: 1.2, fill: 'grad-purple', fillOpacity: 0.02, delay: 1.2 },
-      { cx: 890, cy: 240, r: 30, color: 'grad-orange', strokeWidth: 1, fill: 'transparent', fillOpacity: 0, delay: 2.8 },
-      { cx: 750, cy: 320, r: 28, color: '#a83d95', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 3.2 },
-      { cx: 480, cy: 380, r: 38, color: 'grad-orange', strokeWidth: 1.1, fill: '#d9895c', fillOpacity: 0.015, delay: 2.1 },
-      { cx: 535, cy: 348, r: 24, color: '#481b7e', strokeWidth: 0.8, fill: 'transparent', fillOpacity: 0, delay: 0.5 },
-    ],
-    bonds: [
-      { x1: 180, y1: 160, x2: 265, y2: 110, color: '#c87247' },
-      { x1: 180, y1: 160, x2: 265, y2: 210, color: '#a83d95' },
-      { x1: 180, y1: 160, x2: 95, y2: 210, color: '#481b7e' },
-      { x1: 820, y1: 280, x2: 890, y2: 240, color: '#c87247' },
-      { x1: 820, y1: 280, x2: 750, y2: 320, color: '#672985' },
-      { x1: 480, y1: 380, x2: 535, y2: 348, color: '#d9895c' },
-    ]
-  },
-  services: {
-    hexRings: [
-      { cx: 110, cy: 240, r: 46, color: 'grad-full', strokeWidth: 1.2, fill: 'grad-full', fillOpacity: 0.02, delay: 0.5 },
-      { cx: 180, cy: 200, r: 32, color: 'grad-purple', strokeWidth: 1, fill: 'transparent', fillOpacity: 0, delay: 1.8 },
-      { cx: 180, cy: 280, r: 30, color: '#c87247', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 2.7 },
-      { cx: 550, cy: 80, r: 38, color: 'grad-orange', strokeWidth: 1.1, fill: '#c87247', fillOpacity: 0.015, delay: 1.1 },
-      { cx: 610, cy: 45, r: 24, color: '#a83d95', strokeWidth: 0.8, fill: 'transparent', fillOpacity: 0, delay: 2.9 },
-      { cx: 940, cy: 300, r: 52, color: 'grad-full', strokeWidth: 1.3, fill: 'grad-full', fillOpacity: 0.02, delay: 0.9 },
-      { cx: 1015, cy: 256, r: 34, color: '#c87247', strokeWidth: 1, fill: 'transparent', fillOpacity: 0, delay: 2.4 },
-      { cx: 865, cy: 344, r: 32, color: '#481b7e', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 3.4 },
-      { cx: 380, cy: 470, r: 42, color: 'grad-purple', strokeWidth: 1.1, fill: 'grad-purple', fillOpacity: 0.015, delay: 1.6 },
-      { cx: 445, cy: 432, r: 28, color: 'grad-orange', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 2.3 },
-      { cx: 720, cy: 490, r: 40, color: 'grad-orange', strokeWidth: 1, fill: '#d9895c', fillOpacity: 0.015, delay: 0.8 },
-    ],
-    bonds: [
-      { x1: 110, y1: 240, x2: 180, y2: 200, color: '#672985' },
-      { x1: 110, y1: 240, x2: 180, y2: 280, color: '#c87247' },
-      { x1: 550, y1: 80, x2: 610, y2: 45, color: '#a83d95' },
-      { x1: 940, y1: 300, x2: 1015, y2: 256, color: '#c87247' },
-      { x1: 940, y1: 300, x2: 865, y2: 344, color: '#481b7e' },
-      { x1: 380, y1: 470, x2: 445, y2: 432, color: '#a83d95' },
-      { x1: 720, y1: 490, x2: 660, y2: 455, color: '#d9895c' },
-    ]
-  },
-  process: {
-    hexRings: [
-      { cx: 920, cy: 120, r: 50, color: 'grad-full', strokeWidth: 1.3, fill: 'grad-full', fillOpacity: 0.025, delay: 0.4 },
-      { cx: 995, cy: 76, r: 34, color: 'grad-orange', strokeWidth: 1, fill: '#c87247', fillOpacity: 0.015, delay: 1.9 },
-      { cx: 995, cy: 164, r: 32, color: '#78368c', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 2.6 },
-      { cx: 845, cy: 164, r: 30, color: '#481b7e', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 1.1 },
-      { cx: 860, cy: 380, r: 46, color: 'grad-purple', strokeWidth: 1.2, fill: 'grad-purple', fillOpacity: 0.02, delay: 1.3 },
-      { cx: 930, cy: 340, r: 30, color: 'grad-orange', strokeWidth: 0.9, fill: 'transparent', fillOpacity: 0, delay: 2.8 },
-      { cx: 790, cy: 420, r: 28, color: '#a83d95', strokeWidth: 0.8, fill: 'transparent', fillOpacity: 0, delay: 0.7 },
-      { cx: 120, cy: 380, r: 42, color: 'grad-orange', strokeWidth: 1, fill: '#c87247', fillOpacity: 0.015, delay: 2.0 },
-      { cx: 185, cy: 342, r: 26, color: '#672985', strokeWidth: 0.8, fill: 'transparent', fillOpacity: 0, delay: 3.1 },
-      { cx: 500, cy: 500, r: 36, color: 'grad-full', strokeWidth: 1, fill: 'grad-full', fillOpacity: 0.015, delay: 1.5 },
-    ],
-    bonds: [
-      { x1: 920, y1: 120, x2: 995, y2: 76, color: '#c87247' },
-      { x1: 920, y1: 120, x2: 995, y2: 164, color: '#a83d95' },
-      { x1: 920, y1: 120, x2: 845, y2: 164, color: '#481b7e' },
-      { x1: 860, y1: 380, x2: 930, y2: 340, color: '#c87247' },
-      { x1: 860, y1: 380, x2: 790, y2: 420, color: '#78368c' },
-      { x1: 120, y1: 380, x2: 185, y2: 342, color: '#672985' },
-    ]
-  }
-};
-
 export default function MolecularBackground({
   variant = 'about',
   className = ''
 }: MolecularBackgroundProps) {
-  const uniqueId = useId().replace(/:/g, '');
-  const data = configs[variant] || configs.about;
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const gradFull = `url(#full-${uniqueId})`;
-  const gradPurple = `url(#purp-${uniqueId})`;
-  const gradOrange = `url(#oran-${uniqueId})`;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-  const resolveColor = (c: string) => {
-    if (c === 'grad-full') return gradFull;
-    if (c === 'grad-purple') return gradPurple;
-    if (c === 'grad-orange') return gradOrange;
-    return c;
-  };
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = 0;
+    let height = 0;
+
+    // Resize handler
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * window.devicePixelRatio;
+      canvas.height = height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    };
+
+    // Use ResizeObserver to track container boundaries perfectly
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+    });
+
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement);
+    }
+
+    resize();
+
+    // Particle structure definition
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      color: string;
+      isOrange: boolean;
+    }
+
+    const particles: Particle[] = [];
+    
+    // Palette directly matching the user image: Deep purples, rich violets, and accent copper/orange
+    const purpleColors = [
+      'rgba(106, 0, 200, 0.45)',   // Vibrant Purple
+      'rgba(120, 54, 140, 0.4)',   // Deep Purple-Pink
+      'rgba(72, 27, 126, 0.35)',   // Dark Violet
+      'rgba(147, 51, 234, 0.4)'    // Lavender
+    ];
+    const orangeColor = 'rgba(253, 133, 72, 0.7)'; // #FD8548 (Vibrant copper/orange node)
+
+    // Adjust particle density based on variant and container width
+    const getParticleCount = (w: number) => {
+      let multiplier = 1;
+      if (variant === 'services') multiplier = 1.2;
+      if (variant === 'about') multiplier = 0.9;
+      
+      if (w < 640) return Math.floor(16 * multiplier);
+      if (w < 1024) return Math.floor(32 * multiplier);
+      return Math.floor(48 * multiplier);
+    };
+
+    const initParticles = () => {
+      particles.length = 0;
+      const count = getParticleCount(width);
+      for (let i = 0; i < count; i++) {
+        const isOrange = Math.random() < 0.22; // ~22% orange nodes like the screenshot
+        const color = isOrange ? orangeColor : purpleColors[Math.floor(Math.random() * purpleColors.length)];
+        const radius = isOrange 
+          ? Math.random() * 2 + 3.5  // Orange particles are slightly larger focal points (3.5px to 5.5px)
+          : Math.random() * 1.5 + 2; // Purple particles are smaller (2px to 3.5px)
+        
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          // Extremely slow, organic, fluid drifting speeds
+          vx: (Math.random() - 0.5) * 0.16,
+          vy: (Math.random() - 0.5) * 0.16,
+          radius,
+          color,
+          isOrange
+        });
+      }
+    };
+
+    initParticles();
+
+    // Mouse interactive coordinates
+    const mouse = { x: -1000, y: -1000 };
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    };
+
+    const handleMouseLeave = () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    };
+
+    const parent = canvas.parentElement;
+    if (parent) {
+      parent.addEventListener('mousemove', handleMouseMove, { passive: true });
+      parent.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+    }
+
+    // Main animation draw loop
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // 1. Connection lines (filetes moleculares un poco más gruesos y visibles)
+      const maxDistance = 130;
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < maxDistance) {
+            // Transparency and slightly higher opacity multiplier
+            const alpha = (1 - dist / maxDistance) * 0.22;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            
+            // Connective lines blend based on particle types
+            if (p1.isOrange || p2.isOrange) {
+              ctx.strokeStyle = `rgba(253, 133, 72, ${alpha * 0.9})`;
+            } else {
+              ctx.strokeStyle = `rgba(106, 0, 200, ${alpha})`;
+            }
+            
+            ctx.lineWidth = 1.35; // Thicker lines (filetes) as requested
+            ctx.stroke();
+          }
+        }
+
+        // 2. Interactive mouse lines
+        if (mouse.x > -500) {
+          const dx = p1.x - mouse.x;
+          const dy = p1.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 160) {
+            const alpha = (1 - dist / 160) * 0.28;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(253, 133, 72, ${alpha * 0.7})`;
+            ctx.lineWidth = 1.1; // Thicker mouse lines
+            ctx.stroke();
+          }
+        }
+      }
+
+      // 3. Render and update molecular nodes (rendered as HEXAGONS)
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Smooth boundary bounces
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        // Clip correction to keep nodes within standard viewport
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
+        if (p.y < -10) p.y = height + 10;
+        if (p.y > height + 10) p.y = -10;
+
+        // Draw regular hexagon for node
+        ctx.beginPath();
+        const sides = 6;
+        const hexRadius = p.radius * 1.35; // Slightly scaled up for hexagon readability
+        for (let k = 0; k < sides; k++) {
+          const angle = (Math.PI / 3) * k - Math.PI / 6; // Standard point-up hex orientation
+          const hx = p.x + hexRadius * Math.cos(angle);
+          const hy = p.y + hexRadius * Math.sin(angle);
+          if (k === 0) {
+            ctx.moveTo(hx, hy);
+          } else {
+            ctx.lineTo(hx, hy);
+          }
+        }
+        ctx.closePath();
+        ctx.fillStyle = p.color;
+
+        // Add visual glow to copper/orange focal points just like the image
+        if (p.isOrange) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = 'rgba(253, 133, 72, 0.65)';
+        }
+
+        ctx.fill();
+        ctx.shadowBlur = 0; // reset shadow for next draw
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    // Cleanup listeners and render loops
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      resizeObserver.disconnect();
+      if (parent) {
+        parent.removeEventListener('mousemove', handleMouseMove);
+        parent.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
+  }, [variant]);
 
   return (
     <div
       aria-hidden="true"
       className={`pointer-events-none absolute inset-0 overflow-hidden select-none ${className}`}
     >
-      {/* Resplandores ambientales ultra tenues y desaturados */}
-      <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-gradient-to-br from-[#481b7e]/8 via-[#78368c]/5 to-transparent blur-3xl" />
-      <div className="absolute top-1/2 -right-24 w-96 h-96 rounded-full bg-gradient-to-bl from-[#c87247]/6 via-[#a83d95]/4 to-transparent blur-3xl" />
-      <div className="absolute -bottom-24 left-1/3 w-80 h-80 rounded-full bg-gradient-to-tr from-[#672985]/6 via-[#481b7e]/5 to-transparent blur-3xl" />
-
-      {/* SVG con trama hexagonal molecular transparente y orgánica */}
-      <svg
-        viewBox="0 0 1100 600"
-        preserveAspectRatio="xMidYMid slice"
-        className="w-full h-full opacity-35 md:opacity-45"
-      >
-        <defs>
-          <linearGradient id={`full-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#481b7e" />
-            <stop offset="45%" stopColor="#672985" />
-            <stop offset="70%" stopColor="#a83d95" />
-            <stop offset="100%" stopColor="#c87247" />
-          </linearGradient>
-
-          <linearGradient id={`purp-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#481b7e" />
-            <stop offset="50%" stopColor="#78368c" />
-            <stop offset="100%" stopColor="#a83d95" />
-          </linearGradient>
-
-          <linearGradient id={`oran-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#a83d95" />
-            <stop offset="45%" stopColor="#c87247" />
-            <stop offset="100%" stopColor="#d9895c" />
-          </linearGradient>
-        </defs>
-
-        {/* 1. Enlaces moleculares (líneas con movimiento y flujo sutil) */}
-        <g className="opacity-40">
-          {data.bonds.map((bond, idx) => (
-            <motion.line
-              key={`b-${idx}`}
-              x1={bond.x1}
-              y1={bond.y1}
-              x2={bond.x2}
-              y2={bond.y2}
-              stroke={resolveColor(bond.color)}
-              strokeWidth={0.9}
-              strokeDasharray="4 3"
-              animate={{
-                strokeDashoffset: [0, -28],
-                opacity: [0.25, 0.55, 0.25],
-              }}
-              transition={{
-                duration: 7 + (idx % 3),
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          ))}
-        </g>
-
-        {/* 2. Células y hexágonos estilo laboratorio - limpios, sin círculos internos */}
-        {data.hexRings.map((hex, idx) => {
-          const dx = ((idx * 13) % 15) - 7;
-          const dy = ((idx * 19) % 15) - 7;
-          const rot = (idx % 2 === 0 ? 1 : -1) * 6;
-
-          return (
-            <motion.g
-              key={`h-${idx}`}
-              animate={{
-                x: [0, dx, 0, -dx * 0.7, 0],
-                y: [0, dy, 0, -dy * 0.7, 0],
-                rotate: [0, rot, 0, -rot, 0],
-                scale: [1, 1.025, 0.985, 1],
-              }}
-              transition={{
-                duration: 10 + (idx % 4) * 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: hex.delay,
-              }}
-              style={{ transformOrigin: `${hex.cx}px ${hex.cy}px` }}
-            >
-              {/* Hexágono regular limpio */}
-              <polygon
-                points={getHexPoints(hex.cx, hex.cy, hex.r)}
-                stroke={resolveColor(hex.color)}
-                strokeWidth={hex.strokeWidth}
-                fill={hex.fill === 'transparent' ? 'transparent' : resolveColor(hex.fill)}
-                fillOpacity={hex.fillOpacity}
-                strokeLinejoin="round"
-                className="opacity-70"
-              />
-            </motion.g>
-          );
-        })}
-      </svg>
+      {/* Soft color washes in background */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#6A00C8]/5 via-[#38307E]/3 to-transparent blur-[120px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-[#FD8548]/4 via-[#6A00C8]/2 to-transparent blur-[150px]" />
+      
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full opacity-45 md:opacity-55 pointer-events-auto"
+      />
     </div>
   );
 }
