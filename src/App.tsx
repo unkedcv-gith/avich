@@ -17,6 +17,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MobileBottomNav from './components/MobileBottomNav';
 import WhatsAppButton from './components/WhatsAppButton';
+import NewsModal from './components/NewsModal';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
       <Footer />
       <MobileBottomNav />
       <WhatsAppButton />
+      <NewsModal />
     </div>
   );
 }
