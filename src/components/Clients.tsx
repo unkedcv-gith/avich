@@ -25,7 +25,7 @@ export default function Clients() {
         <img 
           src={biogenesisLogo} 
           alt="Biogénesis Bagó" 
-          className="h-12 md:h-15 w-auto max-w-[210px] object-contain drop-shadow-sm brightness-110 scale-110 md:scale-115" 
+          className="h-12 md:h-15 w-auto max-w-[210px] object-contain drop-shadow-sm brightness-0 invert opacity-90 scale-110 md:scale-115" 
         />
       )
     },
@@ -35,25 +35,19 @@ export default function Clients() {
       subtitle: 'ANIMAL HEALTH',
       svg: (
         <svg viewBox="0 0 220 60" className="w-full h-12 md:h-14 fill-current">
-          <defs>
-            <linearGradient id="pharma-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#38307E" />
-              <stop offset="100%" stopColor="#FD8548" />
-            </linearGradient>
-          </defs>
           {/* Icon */}
           <g transform="translate(10, 8)">
-            <rect x="2" y="10" width="38" height="24" rx="12" fill="none" stroke="url(#pharma-grad)" strokeWidth="3.5" />
-            <path d="M 21,10 L 21,34" stroke="#FD8548" strokeWidth="2.5" />
+            <rect x="2" y="10" width="38" height="24" rx="12" fill="none" stroke="#FFFFFF" strokeWidth="3.5" />
+            <path d="M 21,10 L 21,34" stroke="#FFFFFF" strokeWidth="2.5" />
             <path d="M 12,22 L 30,22" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
-            <circle cx="21" cy="7" r="2.5" fill="#FD8548" />
-            <circle cx="21" cy="37" r="2.5" fill="#6A00C8" />
+            <circle cx="21" cy="7" r="2.5" fill="#FFFFFF" />
+            <circle cx="21" cy="37" r="2.5" fill="#FFFFFF" />
           </g>
           {/* Typography */}
           <text x="60" y="31" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="800" fontSize="20" letterSpacing="1" fill="#FFFFFF">
             PHARMAVET
           </text>
-          <text x="61" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700" fontSize="8" letterSpacing="2.5" fill="#FD8548">
+          <text x="61" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700" fontSize="8" letterSpacing="2.5" fill="#FFFFFF" opacity="0.8">
             ANIMAL HEALTH
           </text>
         </svg>
@@ -65,23 +59,17 @@ export default function Clients() {
       subtitle: 'DESARROLLOS VET',
       svg: (
         <svg viewBox="0 0 230 60" className="w-full h-12 md:h-14 fill-current">
-          <defs>
-            <linearGradient id="agro-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#25D366" />
-              <stop offset="100%" stopColor="#FD8548" />
-            </linearGradient>
-          </defs>
           {/* Icon */}
           <g transform="translate(12, 10)">
-            <polygon points="20,0 37,10 37,30 20,40 3,30 3,10" fill="none" stroke="url(#agro-grad)" strokeWidth="3" strokeLinejoin="round" />
+            <polygon points="20,0 37,10 37,30 20,40 3,30 3,10" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinejoin="round" />
             <path d="M 20,8 L 30,14 L 30,26 L 20,32 L 10,26 L 10,14 Z" fill="none" stroke="#FFFFFF" strokeWidth="1.5" opacity="0.6" />
-            <circle cx="20" cy="20" r="5" fill="#FD8548" />
+            <circle cx="20" cy="20" r="5" fill="#FFFFFF" />
           </g>
           {/* Typography */}
           <text x="60" y="30" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="19" letterSpacing="1" fill="#FFFFFF">
             AGROSÍNTESIS
           </text>
-          <text x="61" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600" fontSize="8.5" letterSpacing="3" fill="#9AE6B4">
+          <text x="61" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600" fontSize="8.5" letterSpacing="3" fill="#FFFFFF" opacity="0.8">
             DESARROLLOS VET
           </text>
         </svg>
@@ -95,15 +83,15 @@ export default function Clients() {
         <svg viewBox="0 0 220 60" className="w-full h-12 md:h-14 fill-current">
           {/* Shield Icon */}
           <g transform="translate(10, 8)">
-            <path d="M 20,2 L 38,9 C 38,26 28,38 20,42 C 12,38 2,26 2,9 Z" fill="none" stroke="#FD8548" strokeWidth="3" strokeLinejoin="round" />
+            <path d="M 20,2 L 38,9 C 38,26 28,38 20,42 C 12,38 2,26 2,9 Z" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinejoin="round" />
             <path d="M 12,20 Q 17,12 20,20 Q 23,28 28,20" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" />
-            <circle cx="20" cy="31" r="3" fill="#FD8548" />
+            <circle cx="20" cy="31" r="3" fill="#FFFFFF" />
           </g>
           {/* Typography */}
           <text x="58" y="31" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="21" letterSpacing="2" fill="#FFFFFF">
             LSA PHARMA
           </text>
-          <text x="59" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700" fontSize="8" letterSpacing="3" fill="#C4B5FD">
+          <text x="59" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700" fontSize="8" letterSpacing="3" fill="#FFFFFF" opacity="0.8">
             SANIDAD ANIMAL
           </text>
         </svg>
@@ -115,25 +103,18 @@ export default function Clients() {
       subtitle: 'SOLUCIONES VETERINARIAS',
       svg: (
         <svg viewBox="0 0 240 60" className="w-full h-12 md:h-14 fill-current">
-          <defs>
-            <linearGradient id="vetbio-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#6A00C8" />
-              <stop offset="50%" stopColor="#FD8548" />
-              <stop offset="100%" stopColor="#FFFFFF" />
-            </linearGradient>
-          </defs>
           {/* Biotech Icon */}
           <g transform="translate(10, 8)">
-            <path d="M 14,4 L 26,4 L 26,14 L 34,34 C 36,38 32,42 27,42 L 13,42 C 8,42 4,38 6,34 L 14,14 Z" fill="none" stroke="url(#vetbio-grad)" strokeWidth="3" strokeLinejoin="round" />
-            <circle cx="16" cy="32" r="3" fill="#FD8548" />
-            <circle cx="24" cy="26" r="2.5" fill="#6A00C8" />
+            <path d="M 14,4 L 26,4 L 26,14 L 34,34 C 36,38 32,42 27,42 L 13,42 C 8,42 4,38 6,34 L 14,14 Z" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinejoin="round" />
+            <circle cx="16" cy="32" r="3" fill="#FFFFFF" />
+            <circle cx="24" cy="26" r="2.5" fill="#FFFFFF" />
             <circle cx="20" cy="36" r="2" fill="#FFFFFF" />
           </g>
           {/* Typography */}
           <text x="58" y="30" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="20" letterSpacing="1.5" fill="#FFFFFF">
             VETBIOTECH
           </text>
-          <text x="59" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600" fontSize="7.5" letterSpacing="2" fill="#FD8548">
+          <text x="59" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600" fontSize="7.5" letterSpacing="2" fill="#FFFFFF" opacity="0.8">
             SOLUCIONES VETERINARIAS
           </text>
         </svg>
