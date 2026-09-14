@@ -196,17 +196,17 @@ export default function Clients() {
 
         {/* --- 1. DESKTOP & TABLET INFINITE MARQUEE CAROUSEL --- */}
         <div 
-          className="hidden md:block relative overflow-hidden rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 p-6 md:p-8 shadow-2xl"
+          className="hidden md:block relative overflow-hidden py-2"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
           {/* Subtle side fade gradients */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#151233] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#151233] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#151233] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#151233] to-transparent z-10 pointer-events-none" />
 
           <div className="flex items-center">
             <motion.div 
-              className="flex items-center gap-10 md:gap-16 whitespace-nowrap"
+              className="flex items-center gap-8 md:gap-12 whitespace-nowrap"
               animate={{ x: isPaused ? undefined : ['0%', '-33.333%'] }}
               transition={{
                 x: {
@@ -234,7 +234,7 @@ export default function Clients() {
         {/* --- 2. MOBILE INTERACTIVE CAROUSEL SLIDER --- */}
         <div className="block md:hidden relative">
           <div 
-            className="overflow-hidden rounded-2xl bg-white/[0.03] border border-white/10 p-6 sm:p-8 shadow-xl"
+            className="overflow-hidden py-2"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
