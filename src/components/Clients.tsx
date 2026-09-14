@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import MolecularBackground from './MolecularBackground';
+import biogenesisLogo from '../assets/images/logo-biogenesisbago.svg';
 
 interface ClientLogo {
   id: string;
@@ -17,33 +18,15 @@ export default function Clients() {
 
   const clientLogos: ClientLogo[] = [
     {
-      id: 'biovet',
-      name: 'BIOVET',
-      subtitle: 'LABORATORIOS',
+      id: 'biogenesisbago',
+      name: 'BIOGÉNESIS BAGÓ',
+      subtitle: 'SALUD ANIMAL',
       svg: (
-        <svg viewBox="0 0 200 60" className="w-full h-12 md:h-14 fill-current">
-          <defs>
-            <linearGradient id="bio-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FD8548" />
-              <stop offset="100%" stopColor="#6A00C8" />
-            </linearGradient>
-          </defs>
-          {/* Logo Icon */}
-          <g transform="translate(10, 10)">
-            <path d="M 20,0 C 31,0 40,9 40,20 C 40,31 31,40 20,40 C 9,40 0,31 0,20 C 0,9 9,0 20,0 Z" fill="none" stroke="url(#bio-grad)" strokeWidth="3" />
-            <path d="M 20,6 C 27,6 34,13 34,20 C 34,27 27,34 20,34" fill="none" stroke="#FD8548" strokeWidth="2.5" strokeDasharray="3 2" />
-            <circle cx="20" cy="20" r="6" fill="#FD8548" />
-            <circle cx="10" cy="14" r="3" fill="#6A00C8" />
-            <circle cx="30" cy="26" r="3" fill="#6A00C8" />
-          </g>
-          {/* Typography */}
-          <text x="62" y="32" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="22" letterSpacing="1.5" fill="#FFFFFF">
-            BIOVET
-          </text>
-          <text x="63" y="45" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600" fontSize="8" letterSpacing="3" fill="#A0A0C0">
-            LABORATORIOS
-          </text>
-        </svg>
+        <img 
+          src={biogenesisLogo} 
+          alt="Biogénesis Bagó" 
+          className="h-12 md:h-15 w-auto max-w-[210px] object-contain drop-shadow-sm brightness-110 scale-110 md:scale-115" 
+        />
       )
     },
     {
@@ -282,7 +265,7 @@ export default function Clients() {
               transition={{ duration: 0.3, ease: 'easeOut' }}
               className="flex flex-col items-center justify-center py-4"
             >
-              <div className="w-full max-w-[240px] h-20 rounded-xl bg-white/[0.05] border border-white/15 flex items-center justify-center p-4 shadow-inner">
+              <div className="w-full max-w-[270px] h-24 rounded-xl bg-white/[0.05] border border-white/15 flex items-center justify-center p-3 shadow-inner overflow-hidden">
                 {clientLogos[currentIndex].svg}
               </div>
               <p className="text-white font-semibold text-base mt-4">
