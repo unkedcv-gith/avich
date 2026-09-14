@@ -1,6 +1,61 @@
-import { motion } from 'motion/react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'motion/react';
 import { FlaskConical, ShieldCheck, Factory, Globe2, ArrowRight } from 'lucide-react';
 import MolecularBackground from './MolecularBackground';
+
+interface AnimatedCounterProps {
+  target: number;
+  suffix: string;
+  description: string;
+  formatThousands?: boolean;
+}
+
+function AnimatedCounter({ target, suffix, description, formatThousands = false }: AnimatedCounterProps) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-30px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const duration = 1800; // 1.8 seconds animation for fast, energetic speed
+    const startTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for fast start and smooth end
+      const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = Math.floor(easeOut * target);
+
+      setCount(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isInView, target]);
+
+  const formattedValue = formatThousands 
+    ? count.toLocaleString('es-AR') 
+    : count.toString();
+
+  return (
+    <div ref={ref} className="text-center md:text-left md:px-8 py-6 md:py-0">
+      <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
+        <span className="text-[#FD8548]">+</span>{formattedValue} {suffix}
+      </div>
+      <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
+        {description}
+      </p>
+    </div>
+  );
+}
 
 export default function About() {
   const aboutCards = [
@@ -41,30 +96,22 @@ export default function About() {
       <div className="bg-[#28225e] border-b border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
-            <div className="text-center md:text-left md:pr-8 py-6 md:py-0">
-              <div className="text-3xl lg:text-4xl xl:text-5xl font-extrabold text-white mb-2 whitespace-nowrap">
-                <span className="text-[#FD8548]">+</span>20 años
-              </div>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                de trayectoria de nuestro equipo en la industria veterinaria
-              </p>
-            </div>
-            <div className="text-center md:text-left md:px-8 py-6 md:py-0">
-              <div className="text-3xl lg:text-4xl xl:text-5xl font-extrabold text-white mb-2 whitespace-nowrap">
-                <span className="text-[#FD8548]">2</span> modalidades
-              </div>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                Soporte Técnico o Paquete Completo: el laboratorio elige cómo trabajar
-              </p>
-            </div>
-            <div className="text-center md:text-left md:pl-8 py-6 md:py-0">
-              <div className="text-3xl lg:text-4xl xl:text-5xl font-extrabold text-white mb-2 whitespace-nowrap">
-                <span className="text-[#FD8548]">7</span> especies
-              </div>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                animales de producción y de compañía, en ensayos clínicos y de campo
-              </p>
-            </div>
+            <AnimatedCounter 
+              target={20} 
+              suffix="años de trayectoria" 
+              description="de nuestro equipo en la industria veterinaria" 
+            />
+            <AnimatedCounter 
+              target={256} 
+              suffix="ensayos realizados" 
+              description="estudios clínicos y de campo ejecutados bajo normativa VICH" 
+            />
+            <AnimatedCounter 
+              target={15000} 
+              suffix="muestras mensuales" 
+              description="procesadas y analizadas con trazabilidad y alta rigurosidad" 
+              formatThousands={true}
+            />
           </div>
         </div>
       </div>
