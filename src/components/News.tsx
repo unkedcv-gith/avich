@@ -1,9 +1,24 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Megaphone, Calendar, ArrowUpRight } from 'lucide-react';
 import MolecularBackground from './MolecularBackground';
-import { newsList } from '../data/newsData';
+import { getStoredNews } from '../utils/newsStorage';
+import { NewsItem } from '../data/newsData';
 
 export default function News() {
+  const [items, setItems] = useState<NewsItem[]>([]);
+
+  const loadNews = () => {
+    const all = getStoredNews();
+    setItems(all.filter((item) => item.published !== false));
+  };
+
+  useEffect(() => {
+    loadNews();
+    window.addEventListener('avich_news_updated', loadNews);
+    return () => window.removeEventListener('avich_news_updated', loadNews);
+  }, []);
+
   return (
     <section id="news" className="relative py-16 md:py-24 bg-[#181338] overflow-hidden">
       <MolecularBackground variant="services" className="z-[1]" />
@@ -24,63 +39,69 @@ export default function News() {
         </div>
 
         {/* News Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {newsList.map((item, index) => (
-            <motion.article
-              key={item.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="group relative bg-[#221c4a]/80 backdrop-blur-xl border border-white/15 rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-[#FD8548]/40 transition-all duration-300 flex flex-col justify-between"
-            >
-              {/* Image Header */}
-              <div>
-                <div className="relative h-56 sm:h-64 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.imageAlt}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#221c4a] via-transparent to-transparent opacity-90" />
-                  
-                  {/* Tag & Date */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                    {item.tag && (
-                      <span className="bg-[#FD8548]/90 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md backdrop-blur-md">
-                        {item.tag}
+        {items.length === 0 ? (
+          <div className="text-center py-12 bg-white/5 rounded-3xl border border-white/10 max-w-xl mx-auto">
+            <p className="text-gray-300 text-base">No hay novedades publicadas por el momento.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            {items.map((item, index) => (
+              <motion.article
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="group relative bg-[#221c4a]/80 backdrop-blur-xl border border-white/15 rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-[#FD8548]/40 transition-all duration-300 flex flex-col justify-between"
+              >
+                {/* Image Header */}
+                <div>
+                  <div className="relative h-56 sm:h-64 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt || item.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#221c4a] via-transparent to-transparent opacity-90" />
+                    
+                    {/* Tag & Date */}
+                    <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                      {item.tag ? (
+                        <span className="bg-[#FD8548]/90 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md backdrop-blur-md">
+                          {item.tag}
+                        </span>
+                      ) : <span />}
+                      <span className="flex items-center gap-1.5 text-xs text-gray-200 font-medium bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+                        <Calendar className="w-3.5 h-3.5 text-[#FD8548]" />
+                        {item.date}
                       </span>
-                    )}
-                    <span className="flex items-center gap-1.5 text-xs text-gray-200 font-medium bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
-                      <Calendar className="w-3.5 h-3.5 text-[#FD8548]" />
-                      {item.date}
-                    </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 sm:p-8 space-y-3">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white leading-snug group-hover:text-[#FD8548] transition-colors duration-200">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed font-light">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 sm:p-8 space-y-3">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white leading-snug group-hover:text-[#FD8548] transition-colors duration-200">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed font-light">
-                    {item.description}
-                  </p>
+                {/* Card Footer */}
+                <div className="px-6 sm:px-8 pb-6 pt-2 flex items-center justify-between border-t border-white/10 mt-4">
+                  <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
+                    Avich Research
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#FD8548] group-hover:translate-x-1 transition-transform duration-200">
+                    Leer más <ArrowUpRight className="w-4 h-4" />
+                  </span>
                 </div>
-              </div>
-
-              {/* Card Footer */}
-              <div className="px-6 sm:px-8 pb-6 pt-2 flex items-center justify-between border-t border-white/10 mt-4">
-                <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
-                  Avich Research
-                </span>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#FD8548] group-hover:translate-x-1 transition-transform duration-200">
-                  Leer más <ArrowUpRight className="w-4 h-4" />
-                </span>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+              </motion.article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
