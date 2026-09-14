@@ -47,8 +47,11 @@ function AnimatedCounter({ target, suffix, description, formatThousands = false 
 
   return (
     <div ref={ref} className="text-center md:text-left md:px-8 py-6 md:py-0">
-      <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
-        <span className="text-[#FD8548]">+</span>{formattedValue} {suffix}
+      <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-1 leading-none tracking-tight">
+        <span className="text-[#FD8548]">+</span>{formattedValue}
+      </div>
+      <div className="text-base sm:text-lg lg:text-xl font-bold text-white mb-1.5 leading-snug">
+        {suffix}
       </div>
       <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
         {description}
