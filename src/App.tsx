@@ -12,6 +12,7 @@ import Process from './components/Process';
 import Species from './components/Species';
 import Team from './components/Team';
 import WhyUs from './components/WhyUs';
+import Clients from './components/Clients';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MobileBottomNav from './components/MobileBottomNav';
@@ -30,6 +31,7 @@ export default function App() {
         <Species />
         <Team />
         <WhyUs />
+        <Clients />
         <Contact />
       </main>
       <Footer />
