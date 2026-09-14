@@ -6,7 +6,7 @@ export default function MobileBottomNav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['contact', 'clients', 'differentiators', 'team', 'species', 'services', 'about'];
+      const sections = ['contact', 'clients', 'news', 'differentiators', 'team', 'species', 'services', 'about'];
       let current = 'hero';
 
       for (const section of sections) {

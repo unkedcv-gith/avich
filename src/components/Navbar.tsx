@@ -9,7 +9,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['about', 'services', 'species', 'differentiators', 'contact'];
+      const sections = ['about', 'services', 'species', 'differentiators', 'news', 'contact'];
       let current = "";
 
       for (const section of sections) {
@@ -35,6 +35,7 @@ export default function Navbar() {
     { id: 'services', label: 'Servicios' },
     { id: 'species', label: 'Especies' },
     { id: 'differentiators', label: 'Por qué elegirnos' },
+    { id: 'news', label: 'Novedades' },
   ];
 
   return (

@@ -12,12 +12,12 @@ import Process from './components/Process';
 import Species from './components/Species';
 import Team from './components/Team';
 import WhyUs from './components/WhyUs';
+import News from './components/News';
 import Clients from './components/Clients';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MobileBottomNav from './components/MobileBottomNav';
 import WhatsAppButton from './components/WhatsAppButton';
-import NewsModal from './components/NewsModal';
 
 export default function App() {
   return (
@@ -32,13 +32,13 @@ export default function App() {
         <Species />
         <Team />
         <WhyUs />
+        <News />
         <Clients />
         <Contact />
       </main>
       <Footer />
       <MobileBottomNav />
       <WhatsAppButton />
-      <NewsModal />
     </div>
   );
 }
