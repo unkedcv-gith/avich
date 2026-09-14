@@ -23,8 +23,8 @@ const newsList: NewsItem[] = [
   {
     id: 2,
     date: "Septiembre 2026",
-    image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80",
-    imageAlt: "Ensayos de laboratorio y biotecnología veterinaria AVICH",
+    image: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Bovinos en campo de ensayo clínico y sanidad animal AVICH",
     title: "Nuevos protocolos de eficacia y seguridad para biológicos veterinarios",
     description: "Fortalecemos nuestra oferta de ensayos clínicos y de campo bajo estándares VICH GL9 (GCP), ofreciendo a los laboratorios acompañamiento integral de punta a punta en el proceso regulatorio."
   }
