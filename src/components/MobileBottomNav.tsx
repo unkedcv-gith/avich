@@ -5,22 +5,29 @@ export default function MobileBottomNav() {
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['contact', 'clients', 'news', 'differentiators', 'team', 'species', 'services', 'about'];
-      let current = 'hero';
+    let ticking = false;
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          // If top of section is within the upper 60% of viewport
-          if (rect.top <= window.innerHeight * 0.6) {
-            current = section;
-            break;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const sections = ['contact', 'clients', 'news', 'differentiators', 'team', 'species', 'services', 'about'];
+          let current = 'hero';
+
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              if (rect.top <= window.innerHeight * 0.5) {
+                current = section;
+                break;
+              }
+            }
           }
-        }
+          setActiveSection((prev) => (prev !== current ? current : prev));
+          ticking = false;
+        });
+        ticking = true;
       }
-      setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -28,19 +35,34 @@ export default function MobileBottomNav() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, targetId: string) => {
+    e.preventDefault();
+    setActiveSection(targetId);
+    if (targetId === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navOffset = 64;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
     <nav 
       aria-label="Navegación móvil"
-      className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-[#130f30]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_-8px_30px_rgba(0,0,0,0.5)] px-3 pt-2 pb-5"
+      className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-[#130f30]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_-8px_30px_rgba(0,0,0,0.5)] px-3 pt-2 pb-5 transform-gpu translate-z-0"
     >
       <div className="max-w-md mx-auto flex items-end justify-between relative">
         {/* 1. Inicio */}
         <button
-          onClick={scrollToTop}
+          onClick={(e) => handleNavClick(e, 'hero')}
           className={`flex flex-col items-center justify-center flex-1 py-1 transition-colors ${
             activeSection === 'hero' ? 'text-[#FD8548]' : 'text-gray-400 hover:text-gray-200'
           }`}
@@ -52,6 +74,7 @@ export default function MobileBottomNav() {
         {/* 2. Especies */}
         <a
           href="#species"
+          onClick={(e) => handleNavClick(e, 'species')}
           className={`flex flex-col items-center justify-center flex-1 py-1 transition-colors ${
             activeSection === 'species' ? 'text-[#FD8548]' : 'text-gray-400 hover:text-gray-200'
           }`}
@@ -64,6 +87,7 @@ export default function MobileBottomNav() {
         <div className="flex-1 flex flex-col items-center justify-center -mt-6">
           <a
             href="#services"
+            onClick={(e) => handleNavClick(e, 'services')}
             className={`w-14 h-14 rounded-full bg-gradient-to-tr from-[#FD8548] to-[#ff985a] text-white flex items-center justify-center shadow-lg shadow-[#FD8548]/40 border-4 border-[#130f30] active:scale-95 transition-all ${
               activeSection === 'services' ? 'ring-2 ring-[#FD8548] ring-offset-2 ring-offset-[#130f30]' : ''
             }`}
@@ -81,6 +105,7 @@ export default function MobileBottomNav() {
         {/* 4. Equipo / Nosotros */}
         <a
           href="#team"
+          onClick={(e) => handleNavClick(e, 'team')}
           className={`flex flex-col items-center justify-center flex-1 py-1 transition-colors ${
             activeSection === 'team' ? 'text-[#FD8548]' : 'text-gray-400 hover:text-gray-200'
           }`}
@@ -92,6 +117,7 @@ export default function MobileBottomNav() {
         {/* 5. Contacto */}
         <a
           href="#contact"
+          onClick={(e) => handleNavClick(e, 'contact')}
           className={`flex flex-col items-center justify-center flex-1 py-1 transition-colors ${
             activeSection === 'contact' ? 'text-[#FD8548]' : 'text-gray-400 hover:text-gray-200'
           }`}
