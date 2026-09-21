@@ -1,20 +1,22 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import MolecularBackground from './MolecularBackground';
 import biogenesisLogo from '../assets/images/logo-biogenesisbago.svg';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ClientLogo {
   id: string;
   name: string;
   subtitle: string;
-  svg: JSX.Element;
+  svg: React.ReactNode;
 }
 
 export default function Clients() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
+  const { t } = useLanguage();
 
   const clientLogos: ClientLogo[] = [
     {
@@ -179,7 +181,7 @@ export default function Clients() {
             viewport={{ once: true }}
             className="text-[#FD8548] font-bold tracking-widest uppercase text-xs sm:text-sm mb-2"
           >
-            Trayectoria y Confianza
+            {t.clients.tag}
           </motion.h2>
           <motion.h3 
             initial={{ opacity: 0, y: 10 }}
@@ -187,10 +189,10 @@ export default function Clients() {
             viewport={{ once: true }}
             className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight"
           >
-            Clientes que confían en nosotros
+            {t.clients.title}
           </motion.h3>
           <p className="text-gray-400 text-sm md:text-base mt-3 max-w-xl mx-auto">
-            Acompañamos a laboratorios veterinarios líderes en cada fase del desarrollo, registro y cumplimiento normativo VICH.
+            {t.clients.subtitle}
           </p>
         </div>
 
@@ -261,7 +263,7 @@ export default function Clients() {
             <button 
               onClick={handlePrev}
               className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 border border-white/20 text-white flex items-center justify-center active:scale-95 transition-all z-10"
-              aria-label="Cliente anterior"
+              aria-label={t.clients.prevAria}
             >
               <ChevronLeft className="w-5 h-5 text-white" />
             </button>
@@ -269,7 +271,7 @@ export default function Clients() {
             <button 
               onClick={handleNext}
               className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 border border-white/20 text-white flex items-center justify-center active:scale-95 transition-all z-10"
-              aria-label="Cliente siguiente"
+              aria-label={t.clients.nextAria}
             >
               <ChevronRight className="w-5 h-5 text-white" />
             </button>

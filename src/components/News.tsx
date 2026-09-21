@@ -4,10 +4,12 @@ import { Megaphone, Calendar, ArrowUpRight, ChevronDown } from 'lucide-react';
 import MolecularBackground from './MolecularBackground';
 import { getStoredNews } from '../utils/newsStorage';
 import { NewsItem } from '../data/newsData';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function News() {
   const [items, setItems] = useState<NewsItem[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(2);
+  const { t } = useLanguage();
 
   const loadNews = () => {
     const all = getStoredNews();
@@ -36,20 +38,20 @@ export default function News() {
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-[#FD8548] text-xs font-bold uppercase tracking-widest mb-4">
             <Megaphone className="w-3.5 h-3.5 text-[#FD8548]" />
-            Novedades & Actualidad
+            {t.news.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Últimas noticias de AVICH
+            {t.news.title}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-gray-300 font-light leading-relaxed">
-            Innovación constante en investigación veterinaria, incorporación de biotecnología y avances en normativa VICH.
+            {t.news.subtitle}
           </p>
         </div>
 
         {/* News Grid */}
         {items.length === 0 ? (
           <div className="text-center py-12 bg-white/5 rounded-3xl border border-white/10 max-w-xl mx-auto">
-            <p className="text-gray-300 text-base">No hay novedades publicadas por el momento.</p>
+            <p className="text-gray-300 text-base">{t.news.empty}</p>
           </div>
         ) : (
           <>
@@ -105,10 +107,10 @@ export default function News() {
                   {/* Card Footer */}
                   <div className="px-6 sm:px-8 pb-6 pt-2 flex items-center justify-between border-t border-white/10 mt-4">
                     <span className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
-                      Avich Research
+                      AVICH CRO
                     </span>
                     <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#FD8548] group-hover:translate-x-1 transition-transform duration-200">
-                      Leer más <ArrowUpRight className="w-4 h-4" />
+                      {t.news.readMore} <ArrowUpRight className="w-4 h-4" />
                     </span>
                   </div>
                 </motion.article>
@@ -124,7 +126,7 @@ export default function News() {
                   onClick={handleLoadMore}
                   className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-[#FD8548] to-[#f26c23] hover:from-[#f26c23] hover:to-[#e05b12] text-white font-bold text-sm sm:text-base shadow-lg shadow-[#FD8548]/25 hover:shadow-xl hover:shadow-[#FD8548]/40 border border-white/20 transition-all duration-200 cursor-pointer"
                 >
-                  <span>Cargar más novedades</span>
+                  <span>{t.news.loadMore}</span>
                   <ChevronDown className="w-4 h-4 text-white animate-bounce" />
                 </motion.button>
               </div>

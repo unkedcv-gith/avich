@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
+  const { t } = useLanguage();
 
   // Show a welcome tooltip briefly 3 seconds after the page loads
   useEffect(() => {
@@ -20,9 +22,8 @@ export default function WhatsAppButton() {
     };
   }, []);
 
-  const phoneNumber = "5492241555555"; // Example Argentine format, user can change this easily
-  const message = "Hola, me gustaría recibir más información sobre los servicios de AVICH.";
-  const encodedMessage = encodeURIComponent(message);
+  const phoneNumber = "5492241555555";
+  const encodedMessage = encodeURIComponent(t.whatsApp.message);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
   return (
@@ -37,7 +38,7 @@ export default function WhatsAppButton() {
           >
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
-              ¿En qué podemos ayudarte?
+              {t.whatsApp.tooltip}
             </div>
             {/* Arrow */}
             <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white border-r border-t border-gray-100 rotate-45" />
@@ -57,7 +58,7 @@ export default function WhatsAppButton() {
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.95 }}
         className="pointer-events-auto w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-[#25D366] flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_10px_28px_rgba(0,0,0,0.18)] border border-gray-100 transition-shadow active:scale-95"
-        aria-label="Contactar por WhatsApp"
+        aria-label={t.whatsApp.aria}
       >
         {/* Exact official outline WhatsApp logo matching the user's reference */}
         <svg 

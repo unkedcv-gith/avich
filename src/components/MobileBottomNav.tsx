@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Home, FlaskConical, Send, PawPrint, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function MobileBottomNav() {
   const [activeSection, setActiveSection] = useState('hero');
+  const { t } = useLanguage();
 
   useEffect(() => {
     let ticking = false;
@@ -68,7 +70,7 @@ export default function MobileBottomNav() {
           }`}
         >
           <Home className="w-5 h-5 mb-1" />
-          <span className="text-[10px] font-medium tracking-tight">Inicio</span>
+          <span className="text-[10px] font-medium tracking-tight">{t.mobileNav.home}</span>
         </button>
 
         {/* 2. Especies */}
@@ -80,7 +82,7 @@ export default function MobileBottomNav() {
           }`}
         >
           <PawPrint className="w-5 h-5 mb-1" />
-          <span className="text-[10px] font-medium tracking-tight">Especies</span>
+          <span className="text-[10px] font-medium tracking-tight">{t.mobileNav.species}</span>
         </a>
 
         {/* 3. CENTRADO Y DESTACADO: Servicios */}
@@ -91,14 +93,14 @@ export default function MobileBottomNav() {
             className={`w-14 h-14 rounded-full bg-gradient-to-tr from-[#FD8548] to-[#ff985a] text-white flex items-center justify-center shadow-lg shadow-[#FD8548]/40 border-4 border-[#130f30] active:scale-95 transition-all ${
               activeSection === 'services' ? 'ring-2 ring-[#FD8548] ring-offset-2 ring-offset-[#130f30]' : ''
             }`}
-            aria-label="Servicios destacados"
+            aria-label={t.mobileNav.services}
           >
             <FlaskConical className="w-6 h-6" />
           </a>
           <span className={`text-[10px] font-bold mt-1 tracking-tight ${
             activeSection === 'services' ? 'text-[#FD8548]' : 'text-gray-300'
           }`}>
-            Servicios
+            {t.mobileNav.services}
           </span>
         </div>
 
@@ -111,7 +113,7 @@ export default function MobileBottomNav() {
           }`}
         >
           <ShieldCheck className="w-5 h-5 mb-1" />
-          <span className="text-[10px] font-medium tracking-tight">Nosotros</span>
+          <span className="text-[10px] font-medium tracking-tight">{t.mobileNav.team}</span>
         </a>
 
         {/* 5. Contacto */}
@@ -123,7 +125,7 @@ export default function MobileBottomNav() {
           }`}
         >
           <Send className="w-5 h-5 mb-1" />
-          <span className="text-[10px] font-medium tracking-tight">Contacto</span>
+          <span className="text-[10px] font-medium tracking-tight">{t.mobileNav.contact}</span>
         </a>
       </div>
     </nav>

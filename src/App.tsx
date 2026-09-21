@@ -4,6 +4,7 @@
  */
 
 import { useState } from 'react';
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -25,25 +26,27 @@ export default function App() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#1a1640] selection:bg-[#6A00C8]/50 selection:text-white scroll-smooth relative">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <WorkModel />
-        <Services />
-        <Process />
-        <Species />
-        <Team />
-        <WhyUs />
-        <News />
-        <Clients />
-        <Contact />
-      </main>
-      <Footer onOpenAdmin={() => setIsAdminOpen(true)} />
-      <MobileBottomNav />
-      <WhatsAppButton />
-      <AdminModal isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-[#1a1640] selection:bg-[#6A00C8]/50 selection:text-white scroll-smooth relative">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <WorkModel />
+          <Services />
+          <Process />
+          <Species />
+          <Team />
+          <WhyUs />
+          <News />
+          <Clients />
+          <Contact />
+        </main>
+        <Footer onOpenAdmin={() => setIsAdminOpen(true)} />
+        <MobileBottomNav />
+        <WhatsAppButton />
+        <AdminModal isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
+      </div>
+    </LanguageProvider>
   );
 }

@@ -1,3 +1,5 @@
+import labSampleImg from '../assets/images/lab_sample_specimen_1789991957640.jpg';
+
 export interface NewsItem {
   id: number | string;
   date: string;
@@ -44,8 +46,8 @@ export const initialNewsList: NewsItem[] = [
     id: 4,
     date: "Julio 2026",
     tag: "Calidad & Certificación",
-    image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80",
-    imageAlt: "Tubos de ensayo con muestras biológicas de laboratorio",
+    image: labSampleImg,
+    imageAlt: "Muestra biológica de laboratorio en tubo de ensayo bajo estrictas normas de calidad",
     title: "Acreditación de nuevos ensayos microbiológicos e inmunológicos",
     description: "Sumamos 12 nuevos ensayos acreditados para la cuantificación de principios activos y vacunas inactivadas, consolidando nuestros estándares de bioseguridad y control.",
     published: true

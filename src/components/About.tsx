@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'motion/react';
 import { FlaskConical, ShieldCheck, Factory, Globe2, ArrowRight } from 'lucide-react';
 import MolecularBackground from './MolecularBackground';
+import { useLanguage } from '../context/LanguageContext';
 
 interface AnimatedCounterProps {
   target: number;
@@ -61,35 +62,13 @@ function AnimatedCounter({ target, suffix, description, formatThousands = false 
 }
 
 export default function About() {
-  const aboutCards = [
-    {
-      icon: <FlaskConical className="w-4 h-4" />,
-      tag: "Qué estudiamos",
-      title: "Eficacia, seguridad, farmacocinética y estudios de campo",
-      preview: "Medicamentos, vacunas y nuevas tecnologías",
-      detail: "Diseño y ejecución de protocolos de alta rigurosidad para aprobación y registro de productos veterinarios."
-    },
-    {
-      icon: <ShieldCheck className="w-4 h-4" />,
-      tag: "Bajo qué marco",
-      title: "Guías VICH de Buenas Prácticas Clínicas",
-      preview: "VICH GL9 (GCP) y normativa local vigente",
-      detail: "Armonización técnica internacional que asegura que cada informe sea auditable ante organismos de control."
-    },
-    {
-      icon: <Factory className="w-4 h-4" />,
-      tag: "Para quién",
-      title: "Laboratorios que desarrollan o registran productos",
-      preview: "En Argentina y toda la región",
-      detail: "Flexibilidad para empresas que requieren capacidad de campo o tercerización integral de punta a punta."
-    },
-    {
-      icon: <Globe2 className="w-4 h-4" />,
-      tag: "Ante quién",
-      title: "Organismos regulatorios oficiales",
-      preview: "En Argentina, SENASA y entes regionales",
-      detail: "Confección y seguimiento proactivo de expedientes para optimizar tiempos de dictamen regulatorio."
-    }
+  const { t } = useLanguage();
+
+  const cardIcons = [
+    <FlaskConical className="w-4 h-4" />,
+    <ShieldCheck className="w-4 h-4" />,
+    <Factory className="w-4 h-4" />,
+    <Globe2 className="w-4 h-4" />
   ];
 
   return (
@@ -101,18 +80,18 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
             <AnimatedCounter 
               target={20} 
-              suffix="años de trayectoria" 
-              description="de nuestro equipo en la industria veterinaria" 
+              suffix={t.about.metrics.years.suffix} 
+              description={t.about.metrics.years.desc} 
             />
             <AnimatedCounter 
               target={256} 
-              suffix="ensayos realizados" 
-              description="estudios clínicos y de campo ejecutados bajo normativa VICH" 
+              suffix={t.about.metrics.trials.suffix} 
+              description={t.about.metrics.trials.desc} 
             />
             <AnimatedCounter 
               target={15000} 
-              suffix="muestras mensuales" 
-              description="procesadas y analizadas con trazabilidad y alta rigurosidad" 
+              suffix={t.about.metrics.samples.suffix} 
+              description={t.about.metrics.samples.desc} 
               formatThousands={true}
             />
           </div>
@@ -122,22 +101,22 @@ export default function About() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
           <div>
-            <h2 className="text-[#FD8548] font-bold tracking-widest uppercase text-sm mb-3">Quiénes Somos</h2>
+            <h2 className="text-[#FD8548] font-bold tracking-widest uppercase text-sm mb-3">{t.about.tag}</h2>
             <h3 className="text-3xl md:text-5xl font-extrabold text-white mb-8 leading-tight">
-              Una CRO veterinaria hecha por veterinarios.
+              {t.about.heading}
             </h3>
             <div className="space-y-6 text-gray-300 text-lg font-light leading-relaxed">
               <p>
-                AVICH es una <strong className="text-white font-semibold">Contract Research Organization</strong> especializada en productos veterinarios. Somos un equipo interdisciplinario con más de 20 años en la industria, especializado en la conducción de estudios clínicos en animales de producción y de compañía.
+                {t.about.p1}
               </p>
               <p>
-                Trabajamos junto a universidades y profesionales de toda la región para ofrecer un servicio integral: desde el diseño del protocolo hasta el registro, cumpliendo los requisitos vigentes de los entes reguladores de cada país.
+                {t.about.p2}
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            {aboutCards.map((card, index) => (
+            {t.about.cards.map((card, index) => (
               <motion.div 
                 key={index}
                 initial={{ opacity: 0, y: 15 }} 
@@ -150,10 +129,10 @@ export default function About() {
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-8 h-8 rounded-lg bg-[#FD8548]/10 text-[#FD8548] group-hover:bg-[#FD8548] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm">
-                      {card.icon}
+                      {cardIcons[index]}
                     </div>
                     <span className="text-[11px] font-medium text-gray-400 group-hover:text-[#FD8548] flex items-center gap-1 transition-colors opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 duration-300">
-                      <span>Ver más</span>
+                      <span>{t.about.seeMore}</span>
                       <ArrowRight className="w-3 h-3" />
                     </span>
                   </div>

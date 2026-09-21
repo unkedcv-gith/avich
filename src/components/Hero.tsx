@@ -1,8 +1,11 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import heroVideo from '../assets/videos/hero.mp4';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-16 sm:py-20 md:py-24">
       {/* Video Background */}
@@ -26,13 +29,13 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-[#FD8548] font-bold tracking-widest uppercase text-xs md:text-sm lg:text-base mb-3 sm:mb-4">
-            Veterinary Research
+            {t.hero.badge}
           </h2>
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4 sm:mb-6">
-            Gestión integral de ensayos clínicos veterinarios
+            {t.hero.title}
           </h1>
           <p className="text-sm sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-8 md:mb-10 max-w-3xl mx-auto font-light leading-relaxed">
-            Diseñamos, ejecutamos y gestionamos estudios clínicos bajo estándares internacionales para el registro de productos ante SENASA y organismos regulatorios.
+            {t.hero.description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-sm mx-auto sm:max-w-none">
@@ -40,14 +43,14 @@ export default function Hero() {
               href="#services" 
               className="hidden sm:inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base font-semibold text-white bg-[#FD8548] rounded-full hover:bg-[#e0753d] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
-              Conocé nuestros servicios
+              {t.hero.ctaServices}
               <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
             </a>
             <a 
               href="#about" 
               className="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base font-semibold text-white bg-white/10 backdrop-blur-sm border border-white/30 rounded-full hover:bg-white/20 transition-all"
             >
-              Descubrí AVICH
+              {t.hero.ctaAbout}
             </a>
           </div>
         </motion.div>

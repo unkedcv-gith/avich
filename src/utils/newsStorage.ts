@@ -1,6 +1,6 @@
 import { NewsItem, initialNewsList } from '../data/newsData';
 
-const STORAGE_KEY = 'avich_news_list_v5';
+const STORAGE_KEY = 'avich_news_list_v6';
 
 export function getStoredNews(): NewsItem[] {
   try {
