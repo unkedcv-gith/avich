@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-[#1a1640] selection:bg-[#6A00C8]/50 selection:text-white scroll-smooth relative">
+      <div className="min-h-screen bg-[#f8f7fd] text-[#1a1640] selection:bg-[#6A00C8]/20 selection:text-[#6A00C8] scroll-smooth relative">
         <Navbar />
         <main>
           <Hero />

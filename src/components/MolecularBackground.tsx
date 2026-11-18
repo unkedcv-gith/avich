@@ -2,11 +2,13 @@ import { useEffect, useRef } from 'react';
 
 interface MolecularBackgroundProps {
   variant?: 'about' | 'whyus' | 'services' | 'process';
+  theme?: 'light' | 'orange' | 'lilac';
   className?: string;
 }
 
 export default function MolecularBackground({
   variant = 'about',
+  theme = 'light',
   className = ''
 }: MolecularBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -32,7 +34,6 @@ export default function MolecularBackground({
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     };
 
-    // Use ResizeObserver to track container boundaries perfectly
     const resizeObserver = new ResizeObserver(() => {
       resize();
     });
@@ -51,57 +52,92 @@ export default function MolecularBackground({
       vy: number;
       radius: number;
       color: string;
-      isOrange: boolean;
+      rotation: number;
+      vRot: number;
     }
 
     const particles: Particle[] = [];
-    
-    // Palette directly matching the user image: Deep purples, rich violets, and accent copper/orange
-    const purpleColors = [
-      'rgba(106, 0, 200, 0.45)',   // Vibrant Purple
-      'rgba(120, 54, 140, 0.4)',   // Deep Purple-Pink
-      'rgba(72, 27, 126, 0.35)',   // Dark Violet
-      'rgba(147, 51, 234, 0.4)'    // Lavender
-    ];
-    const orangeColor = 'rgba(253, 133, 72, 0.7)'; // #FD8548 (Vibrant copper/orange node)
 
-    // Adjust particle density based on variant and container width
+    // Distinct palettes tailored by theme
+    const getThemeColors = () => {
+      if (theme === 'orange') {
+        return [
+          'rgba(255, 255, 255, 0.95)', // Clean white
+          'rgba(255, 255, 255, 0.75)', // Soft white
+          'rgba(56, 48, 126, 0.9)',    // Deep indigo-violet accent
+          'rgba(106, 0, 200, 0.85)',   // Brand violet accent
+          'rgba(200, 0, 214, 0.85)'    // Magenta accent
+        ];
+      }
+      if (theme === 'lilac') {
+        return [
+          'rgba(255, 255, 255, 0.95)', // Clean white
+          'rgba(255, 255, 255, 0.75)', // Soft white
+          'rgba(253, 133, 72, 0.95)',  // Copper/orange accent
+          'rgba(255, 255, 255, 0.85)', // White
+          'rgba(26, 22, 64, 0.85)'     // Deep violet
+        ];
+      }
+      // Light theme (default) - directly matching logo violet & copper
+      return [
+        'rgba(106, 0, 200, 0.85)', // Brand violet
+        'rgba(56, 48, 126, 0.85)',  // Indigo violet
+        'rgba(200, 0, 214, 0.8)',   // Magenta violet
+        'rgba(253, 133, 72, 0.85)', // Accent copper/orange
+        'rgba(106, 0, 200, 0.85)'  // Brand violet
+      ];
+    };
+
+    // Substantially reduced particle density: clean, airy, not crowded
     const getParticleCount = (w: number) => {
       let multiplier = 1;
-      if (variant === 'services') multiplier = 1.2;
-      if (variant === 'about') multiplier = 0.9;
-      
-      if (w < 640) return Math.floor(16 * multiplier);
-      if (w < 1024) return Math.floor(32 * multiplier);
-      return Math.floor(48 * multiplier);
+      if (variant === 'services') multiplier = 1.1;
+      if (variant === 'about') multiplier = 1;
+
+      if (w < 640) return Math.max(5, Math.floor(7 * multiplier));
+      if (w < 1024) return Math.max(8, Math.floor(12 * multiplier));
+      return Math.max(12, Math.floor(17 * multiplier));
     };
 
     const initParticles = () => {
       particles.length = 0;
       const count = getParticleCount(width);
+      const palette = getThemeColors();
+
       for (let i = 0; i < count; i++) {
-        const isOrange = Math.random() < 0.22; // ~22% orange nodes like the screenshot
-        const color = isOrange ? orangeColor : purpleColors[Math.floor(Math.random() * purpleColors.length)];
-        const radius = isOrange 
-          ? Math.random() * 2 + 3.5  // Orange particles are slightly larger focal points (3.5px to 5.5px)
-          : Math.random() * 1.5 + 2; // Purple particles are smaller (2px to 3.5px)
-        
+        const color = palette[Math.floor(Math.random() * palette.length)];
+
+        // Varied sizes like in the logo: small, medium, and signature large pentagons
+        const sizeRand = Math.random();
+        let radius = 4.5;
+        if (sizeRand < 0.55) {
+          // Small nodes (4px to 6px)
+          radius = Math.random() * 2 + 4;
+        } else if (sizeRand < 0.85) {
+          // Medium pentagons (8px to 11px)
+          radius = Math.random() * 3 + 8;
+        } else {
+          // Large prominent pentagons as in the AVICH logo (14px to 18px)
+          radius = Math.random() * 4 + 14;
+        }
+
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          // Extremely slow, organic, fluid drifting speeds
-          vx: (Math.random() - 0.5) * 0.16,
-          vy: (Math.random() - 0.5) * 0.16,
+          // Calm, smooth, steady drifting speed (no nervous vibrations)
+          vx: (Math.random() - 0.5) * 0.12,
+          vy: (Math.random() - 0.5) * 0.12,
           radius,
           color,
-          isOrange
+          rotation: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.002
         });
       }
     };
 
     initParticles();
 
-    // Mouse interactive coordinates
+    // Mouse coordinates
     const mouse = { x: -1000, y: -1000 };
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -124,8 +160,11 @@ export default function MolecularBackground({
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // 1. Connection lines (filetes moleculares un poco más gruesos y visibles)
-      const maxDistance = 130;
+      // Disable any shadows completely ("Que no tengan sombritas")
+      ctx.shadowBlur = 0;
+
+      // 1. Connection lines: ultra-thin, steady, with zero flickering
+      const maxDistance = 160;
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
@@ -135,81 +174,87 @@ export default function MolecularBackground({
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDistance) {
-            // Transparency and slightly higher opacity multiplier
-            const alpha = (1 - dist / maxDistance) * 0.22;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            
-            // Connective lines blend based on particle types
-            if (p1.isOrange || p2.isOrange) {
-              ctx.strokeStyle = `rgba(253, 133, 72, ${alpha * 0.9})`;
-            } else {
-              ctx.strokeStyle = `rgba(106, 0, 200, ${alpha})`;
+            // Smooth cosine falloff eliminates boundary popping/flickering entirely
+            const ratio = dist / maxDistance;
+            const smoothFactor = Math.cos(ratio * Math.PI * 0.5);
+
+            if (smoothFactor > 0.03) {
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+
+              // Stable theme line colors
+              if (theme === 'orange') {
+                ctx.strokeStyle = `rgba(255, 255, 255, ${(smoothFactor * 0.45).toFixed(3)})`;
+              } else if (theme === 'lilac') {
+                ctx.strokeStyle = `rgba(255, 255, 255, ${(smoothFactor * 0.4).toFixed(3)})`;
+              } else {
+                ctx.strokeStyle = `rgba(106, 0, 200, ${(smoothFactor * 0.35).toFixed(3)})`;
+              }
+
+              // Fine lines as requested ("lineas finitas y sin titileos")
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
             }
-            
-            ctx.lineWidth = 1.35; // Thicker lines (filetes) as requested
-            ctx.stroke();
           }
         }
 
-        // 2. Interactive mouse lines
+        // 2. Interactive mouse lines (subtle & fine)
         if (mouse.x > -500) {
           const dx = p1.x - mouse.x;
           const dy = p1.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 160) {
-            const alpha = (1 - dist / 160) * 0.28;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(253, 133, 72, ${alpha * 0.7})`;
-            ctx.lineWidth = 1.1; // Thicker mouse lines
-            ctx.stroke();
+          if (dist < 150) {
+            const smoothFactor = Math.cos((dist / 150) * Math.PI * 0.5);
+            if (smoothFactor > 0.05) {
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(mouse.x, mouse.y);
+              if (theme === 'orange' || theme === 'lilac') {
+                ctx.strokeStyle = `rgba(255, 255, 255, ${(smoothFactor * 0.35).toFixed(3)})`;
+              } else {
+                ctx.strokeStyle = `rgba(106, 0, 200, ${(smoothFactor * 0.3).toFixed(3)})`;
+              }
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
           }
         }
       }
 
-      // 3. Render and update molecular nodes (rendered as HEXAGONS)
+      // 3. Render regular PENTAGONS (5 sides) of varying sizes without shadows
       particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
+        p.rotation += p.vRot;
 
-        // Smooth boundary bounces
+        // Smooth boundaries
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        // Clip correction to keep nodes within standard viewport
-        if (p.x < -10) p.x = width + 10;
-        if (p.x > width + 10) p.x = -10;
-        if (p.y < -10) p.y = height + 10;
-        if (p.y > height + 10) p.y = -10;
+        if (p.x < -20) p.x = width + 20;
+        if (p.x > width + 20) p.x = -20;
+        if (p.y < -20) p.y = height + 20;
+        if (p.y > height + 20) p.y = -20;
 
-        // Draw regular hexagon for node
+        // Regular 5-sided pentagon drawing
         ctx.beginPath();
-        const sides = 6;
-        const hexRadius = p.radius * 1.35; // Slightly scaled up for hexagon readability
+        const sides = 5;
         for (let k = 0; k < sides; k++) {
-          const angle = (Math.PI / 3) * k - Math.PI / 6; // Standard point-up hex orientation
-          const hx = p.x + hexRadius * Math.cos(angle);
-          const hy = p.y + hexRadius * Math.sin(angle);
+          const angle = (2 * Math.PI / sides) * k - Math.PI / 2 + p.rotation;
+          const px = p.x + p.radius * Math.cos(angle);
+          const py = p.y + p.radius * Math.sin(angle);
           if (k === 0) {
-            ctx.moveTo(hx, hy);
+            ctx.moveTo(px, py);
           } else {
-            ctx.lineTo(hx, hy);
+            ctx.lineTo(px, py);
           }
         }
         ctx.closePath();
         ctx.fillStyle = p.color;
-
-        // Add visual glow to copper/orange focal points just like the image
-        if (p.isOrange) {
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = 'rgba(253, 133, 72, 0.65)';
-        }
-
+        // Strictly flat without any shadow blur
+        ctx.shadowBlur = 0;
         ctx.fill();
-        ctx.shadowBlur = 0; // reset shadow for next draw
       });
 
       animationFrameId = requestAnimationFrame(animate);
@@ -217,7 +262,6 @@ export default function MolecularBackground({
 
     animate();
 
-    // Cleanup listeners and render loops
     return () => {
       cancelAnimationFrame(animationFrameId);
       resizeObserver.disconnect();
@@ -226,20 +270,34 @@ export default function MolecularBackground({
         parent.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, [variant]);
+  }, [variant, theme]);
 
   return (
     <div
       aria-hidden="true"
       className={`pointer-events-none absolute inset-0 overflow-hidden select-none ${className}`}
     >
-      {/* Soft color washes in background */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#6A00C8]/5 via-[#38307E]/3 to-transparent blur-[120px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-[#FD8548]/4 via-[#6A00C8]/2 to-transparent blur-[150px]" />
-      
+      {/* Background ambient lighting */}
+      {theme === 'orange' ? (
+        <>
+          <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] rounded-full bg-white/10 blur-[100px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-[#38307E]/20 blur-[130px]" />
+        </>
+      ) : theme === 'lilac' ? (
+        <>
+          <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] rounded-full bg-white/10 blur-[100px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-[#FD8548]/15 blur-[120px]" />
+        </>
+      ) : (
+        <>
+          <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] rounded-full bg-[#6A00C8]/5 blur-[100px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-[#FD8548]/4 blur-[130px]" />
+        </>
+      )}
+
       <canvas
         ref={canvasRef}
-        className="w-full h-full opacity-45 md:opacity-55 pointer-events-auto"
+        className="w-full h-full opacity-80 pointer-events-auto"
       />
     </div>
   );

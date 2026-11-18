@@ -33,42 +33,42 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-[#38307E] relative overflow-hidden">
-      <MolecularBackground variant="process" className="opacity-15" />
+    <section id="contact" className="py-16 md:py-24 bg-[#f8f7fd] relative overflow-hidden">
+      <MolecularBackground variant="process" className="opacity-70" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
           
-          <div className="text-white">
+          <div className="text-[#1a1640]">
             <h2 className="text-[#FD8548] font-bold tracking-widest uppercase text-sm mb-3">{t.contact.tag}</h2>
-            <h3 className="text-3xl md:text-5xl font-extrabold mb-6">{t.contact.title}</h3>
-            <p className="text-gray-300 text-lg mb-10 max-w-md">
+            <h3 className="text-3xl md:text-5xl font-extrabold text-[#1a1640] mb-6">{t.contact.title}</h3>
+            <p className="text-gray-700 text-lg mb-10 max-w-md">
               {t.contact.subtitle}
             </p>
             
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-full bg-purple-100 border border-purple-200 flex items-center justify-center shrink-0">
                   <Mail className="w-5 h-5 text-[#FD8548]" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400">{t.contact.emailLabel}</p>
-                  <p className="text-lg font-medium">contacto@avich.com.ar</p>
+                  <p className="text-sm text-gray-500">{t.contact.emailLabel}</p>
+                  <p className="text-lg font-bold text-[#1a1640]">contacto@avich.com.ar</p>
                 </div>
               </div>
               
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-full bg-purple-100 border border-purple-200 flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5 text-[#FD8548]" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400">{t.contact.locationLabel}</p>
-                  <p className="text-lg font-medium">{t.contact.locationValue}</p>
+                  <p className="text-sm text-gray-500">{t.contact.locationLabel}</p>
+                  <p className="text-lg font-bold text-[#1a1640]">{t.contact.locationValue}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl md:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-2xl">
+          <div className="bg-white rounded-2xl md:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-2xl border border-[#6A00C8]/15">
             {submitted ? (
               <div className="h-full flex flex-col items-center justify-center py-12 text-center">
                 <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4 text-2xl font-bold">✓</div>

@@ -27,7 +27,7 @@ export default function Clients() {
         <img 
           src={biogenesisLogo} 
           alt="Biogénesis Bagó" 
-          className="h-12 md:h-15 w-auto max-w-[210px] object-contain drop-shadow-sm brightness-0 invert opacity-90 scale-110 md:scale-115" 
+          className="h-12 md:h-15 w-auto max-w-[210px] object-contain drop-shadow-xs opacity-90 scale-110 md:scale-115" 
         />
       )
     },
@@ -39,17 +39,17 @@ export default function Clients() {
         <svg viewBox="0 0 220 60" className="w-full h-12 md:h-14 fill-current">
           {/* Icon */}
           <g transform="translate(10, 8)">
-            <rect x="2" y="10" width="38" height="24" rx="12" fill="none" stroke="#FFFFFF" strokeWidth="3.5" />
-            <path d="M 21,10 L 21,34" stroke="#FFFFFF" strokeWidth="2.5" />
-            <path d="M 12,22 L 30,22" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
-            <circle cx="21" cy="7" r="2.5" fill="#FFFFFF" />
-            <circle cx="21" cy="37" r="2.5" fill="#FFFFFF" />
+            <rect x="2" y="10" width="38" height="24" rx="12" fill="none" stroke="#1a1640" strokeWidth="3.5" />
+            <path d="M 21,10 L 21,34" stroke="#1a1640" strokeWidth="2.5" />
+            <path d="M 12,22 L 30,22" stroke="#1a1640" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="21" cy="7" r="2.5" fill="#1a1640" />
+            <circle cx="21" cy="37" r="2.5" fill="#1a1640" />
           </g>
           {/* Typography */}
-          <text x="60" y="31" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="800" fontSize="20" letterSpacing="1" fill="#FFFFFF">
+          <text x="60" y="31" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="800" fontSize="20" letterSpacing="1" fill="#1a1640">
             PHARMAVET
           </text>
-          <text x="61" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700" fontSize="8" letterSpacing="2.5" fill="#FFFFFF" opacity="0.8">
+          <text x="61" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700" fontSize="8" letterSpacing="2.5" fill="#6A00C8" opacity="0.8">
             ANIMAL HEALTH
           </text>
         </svg>
@@ -63,15 +63,15 @@ export default function Clients() {
         <svg viewBox="0 0 230 60" className="w-full h-12 md:h-14 fill-current">
           {/* Icon */}
           <g transform="translate(12, 10)">
-            <polygon points="20,0 37,10 37,30 20,40 3,30 3,10" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinejoin="round" />
-            <path d="M 20,8 L 30,14 L 30,26 L 20,32 L 10,26 L 10,14 Z" fill="none" stroke="#FFFFFF" strokeWidth="1.5" opacity="0.6" />
-            <circle cx="20" cy="20" r="5" fill="#FFFFFF" />
+            <polygon points="20,0 37,10 37,30 20,40 3,30 3,10" fill="none" stroke="#1a1640" strokeWidth="3" strokeLinejoin="round" />
+            <path d="M 20,8 L 30,14 L 30,26 L 20,32 L 10,26 L 10,14 Z" fill="none" stroke="#1a1640" strokeWidth="1.5" opacity="0.6" />
+            <circle cx="20" cy="20" r="5" fill="#1a1640" />
           </g>
           {/* Typography */}
-          <text x="60" y="30" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="19" letterSpacing="1" fill="#FFFFFF">
+          <text x="60" y="30" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="19" letterSpacing="1" fill="#1a1640">
             AGROSÍNTESIS
           </text>
-          <text x="61" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600" fontSize="8.5" letterSpacing="3" fill="#FFFFFF" opacity="0.8">
+          <text x="61" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600" fontSize="8.5" letterSpacing="3" fill="#6A00C8" opacity="0.8">
             DESARROLLOS VET
           </text>
         </svg>
@@ -85,15 +85,15 @@ export default function Clients() {
         <svg viewBox="0 0 220 60" className="w-full h-12 md:h-14 fill-current">
           {/* Shield Icon */}
           <g transform="translate(10, 8)">
-            <path d="M 20,2 L 38,9 C 38,26 28,38 20,42 C 12,38 2,26 2,9 Z" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinejoin="round" />
-            <path d="M 12,20 Q 17,12 20,20 Q 23,28 28,20" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" />
-            <circle cx="20" cy="31" r="3" fill="#FFFFFF" />
+            <path d="M 20,2 L 38,9 C 38,26 28,38 20,42 C 12,38 2,26 2,9 Z" fill="none" stroke="#1a1640" strokeWidth="3" strokeLinejoin="round" />
+            <path d="M 12,20 Q 17,12 20,20 Q 23,28 28,20" fill="none" stroke="#1a1640" strokeWidth="2.5" strokeLinecap="round" />
+            <circle cx="20" cy="31" r="3" fill="#1a1640" />
           </g>
           {/* Typography */}
-          <text x="58" y="31" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="21" letterSpacing="2" fill="#FFFFFF">
+          <text x="58" y="31" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="21" letterSpacing="2" fill="#1a1640">
             LSA PHARMA
           </text>
-          <text x="59" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700" fontSize="8" letterSpacing="3" fill="#FFFFFF" opacity="0.8">
+          <text x="59" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700" fontSize="8" letterSpacing="3" fill="#6A00C8" opacity="0.8">
             SANIDAD ANIMAL
           </text>
         </svg>
@@ -107,16 +107,16 @@ export default function Clients() {
         <svg viewBox="0 0 240 60" className="w-full h-12 md:h-14 fill-current">
           {/* Biotech Icon */}
           <g transform="translate(10, 8)">
-            <path d="M 14,4 L 26,4 L 26,14 L 34,34 C 36,38 32,42 27,42 L 13,42 C 8,42 4,38 6,34 L 14,14 Z" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinejoin="round" />
-            <circle cx="16" cy="32" r="3" fill="#FFFFFF" />
-            <circle cx="24" cy="26" r="2.5" fill="#FFFFFF" />
-            <circle cx="20" cy="36" r="2" fill="#FFFFFF" />
+            <path d="M 14,4 L 26,4 L 26,14 L 34,34 C 36,38 32,42 27,42 L 13,42 C 8,42 4,38 6,34 L 14,14 Z" fill="none" stroke="#1a1640" strokeWidth="3" strokeLinejoin="round" />
+            <circle cx="16" cy="32" r="3" fill="#1a1640" />
+            <circle cx="24" cy="26" r="2.5" fill="#1a1640" />
+            <circle cx="20" cy="36" r="2" fill="#1a1640" />
           </g>
           {/* Typography */}
-          <text x="58" y="30" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="20" letterSpacing="1.5" fill="#FFFFFF">
+          <text x="58" y="30" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="20" letterSpacing="1.5" fill="#1a1640">
             VETBIOTECH
           </text>
-          <text x="59" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600" fontSize="7.5" letterSpacing="2" fill="#FFFFFF" opacity="0.8">
+          <text x="59" y="44" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600" fontSize="7.5" letterSpacing="2" fill="#6A00C8" opacity="0.8">
             SOLUCIONES VETERINARIAS
           </text>
         </svg>
@@ -167,9 +167,9 @@ export default function Clients() {
   const marqueeLogos = [...clientLogos, ...clientLogos, ...clientLogos];
 
   return (
-    <section id="clients" className="py-16 md:py-20 bg-[#151233] relative overflow-hidden border-t border-b border-white/5">
+    <section id="clients" className="py-16 md:py-20 bg-white relative overflow-hidden border-t border-b border-purple-100">
       {/* Background Molecular Mesh */}
-      <MolecularBackground variant="services" className="opacity-20" />
+      <MolecularBackground variant="services" className="opacity-70" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -187,11 +187,11 @@ export default function Clients() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight"
+            className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1a1640] leading-tight"
           >
             {t.clients.title}
           </motion.h3>
-          <p className="text-gray-400 text-sm md:text-base mt-3 max-w-xl mx-auto">
+          <p className="text-gray-600 text-sm md:text-base mt-3 max-w-xl mx-auto">
             {t.clients.subtitle}
           </p>
         </div>
@@ -203,8 +203,8 @@ export default function Clients() {
           onMouseLeave={() => setIsPaused(false)}
         >
           {/* Subtle side fade gradients */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#151233] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#151233] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
           <div className="flex items-center">
             <motion.div 
@@ -222,7 +222,7 @@ export default function Clients() {
               {marqueeLogos.map((client, index) => (
                 <div 
                   key={`${client.id}-${index}`}
-                  className="flex-shrink-0 w-52 md:w-60 h-24 rounded-xl bg-white/[0.04] border border-white/10 hover:border-[#FD8548]/50 hover:bg-white/[0.08] transition-all duration-300 flex items-center justify-center p-4 group cursor-pointer shadow-sm hover:shadow-[0_8px_25px_rgba(253,133,72,0.15)] hover:-translate-y-1"
+                  className="flex-shrink-0 w-52 md:w-60 h-24 rounded-xl bg-[#f8f7fd] border border-purple-200 hover:border-[#FD8548]/50 hover:bg-white transition-all duration-300 flex items-center justify-center p-4 group cursor-pointer shadow-xs hover:shadow-lg hover:-translate-y-1"
                 >
                   <div className="opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300">
                     {client.svg}
@@ -248,10 +248,10 @@ export default function Clients() {
               transition={{ duration: 0.3, ease: 'easeOut' }}
               className="flex flex-col items-center justify-center py-4"
             >
-              <div className="w-full max-w-[270px] h-24 rounded-xl bg-white/[0.05] border border-white/15 flex items-center justify-center p-3 shadow-inner overflow-hidden">
+              <div className="w-full max-w-[270px] h-24 rounded-xl bg-[#f8f7fd] border border-purple-200 flex items-center justify-center p-3 shadow-inner overflow-hidden">
                 {clientLogos[currentIndex].svg}
               </div>
-              <p className="text-white font-semibold text-base mt-4">
+              <p className="text-[#1a1640] font-semibold text-base mt-4">
                 {clientLogos[currentIndex].name}
               </p>
               <p className="text-xs text-[#FD8548] font-medium tracking-wider uppercase">
@@ -262,18 +262,18 @@ export default function Clients() {
             {/* Navigation Buttons for Mobile */}
             <button 
               onClick={handlePrev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 border border-white/20 text-white flex items-center justify-center active:scale-95 transition-all z-10"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-purple-200 text-[#1a1640] flex items-center justify-center active:scale-95 shadow-md transition-all z-10"
               aria-label={t.clients.prevAria}
             >
-              <ChevronLeft className="w-5 h-5 text-white" />
+              <ChevronLeft className="w-5 h-5 text-[#1a1640]" />
             </button>
             
             <button 
               onClick={handleNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 border border-white/20 text-white flex items-center justify-center active:scale-95 transition-all z-10"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-purple-200 text-[#1a1640] flex items-center justify-center active:scale-95 shadow-md transition-all z-10"
               aria-label={t.clients.nextAria}
             >
-              <ChevronRight className="w-5 h-5 text-white" />
+              <ChevronRight className="w-5 h-5 text-[#1a1640]" />
             </button>
           </div>
 
@@ -284,7 +284,7 @@ export default function Clients() {
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  currentIndex === idx ? 'w-6 bg-[#FD8548]' : 'w-2 bg-white/30 hover:bg-white/50'
+                  currentIndex === idx ? 'w-6 bg-[#FD8548]' : 'w-2 bg-gray-300 hover:bg-gray-400'
                 }`}
                 aria-label={`Ir al cliente ${idx + 1}`}
               />
