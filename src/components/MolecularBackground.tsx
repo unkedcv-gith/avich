@@ -58,33 +58,33 @@ export default function MolecularBackground({
 
     const particles: Particle[] = [];
 
-    // Distinct palettes tailored by theme
+    // Distinct palettes tailored by theme (balanced, softer opacity for background integration)
     const getThemeColors = () => {
       if (theme === 'orange') {
         return [
-          'rgba(255, 255, 255, 0.95)', // Clean white
-          'rgba(255, 255, 255, 0.75)', // Soft white
-          'rgba(56, 48, 126, 0.9)',    // Deep indigo-violet accent
-          'rgba(106, 0, 200, 0.85)',   // Brand violet accent
-          'rgba(200, 0, 214, 0.85)'    // Magenta accent
+          'rgba(255, 255, 255, 0.55)', // Soft clean white
+          'rgba(255, 255, 255, 0.42)', // Translucent white
+          'rgba(56, 48, 126, 0.55)',   // Deep indigo-violet accent
+          'rgba(106, 0, 200, 0.50)',   // Brand violet accent
+          'rgba(200, 0, 214, 0.48)'    // Magenta accent
         ];
       }
       if (theme === 'lilac') {
         return [
-          'rgba(255, 255, 255, 0.95)', // Clean white
-          'rgba(255, 255, 255, 0.75)', // Soft white
-          'rgba(253, 133, 72, 0.95)',  // Copper/orange accent
-          'rgba(255, 255, 255, 0.85)', // White
-          'rgba(26, 22, 64, 0.85)'     // Deep violet
+          'rgba(255, 255, 255, 0.55)', // Soft clean white
+          'rgba(255, 255, 255, 0.42)', // Translucent white
+          'rgba(253, 133, 72, 0.55)',  // Copper/orange accent
+          'rgba(255, 255, 255, 0.48)', // White
+          'rgba(26, 22, 64, 0.50)'     // Deep violet
         ];
       }
-      // Light theme (default) - directly matching logo violet & copper
+      // Light theme (default) - directly matching logo violet & copper with softer opacity
       return [
-        'rgba(106, 0, 200, 0.85)', // Brand violet
-        'rgba(56, 48, 126, 0.85)',  // Indigo violet
-        'rgba(200, 0, 214, 0.8)',   // Magenta violet
-        'rgba(253, 133, 72, 0.85)', // Accent copper/orange
-        'rgba(106, 0, 200, 0.85)'  // Brand violet
+        'rgba(106, 0, 200, 0.48)', // Brand violet
+        'rgba(56, 48, 126, 0.48)', // Indigo violet
+        'rgba(200, 0, 214, 0.44)', // Magenta violet
+        'rgba(253, 133, 72, 0.50)', // Accent copper/orange
+        'rgba(106, 0, 200, 0.48)'  // Brand violet
       ];
     };
 
@@ -297,7 +297,7 @@ export default function MolecularBackground({
 
       <canvas
         ref={canvasRef}
-        className="w-full h-full opacity-80 pointer-events-auto"
+        className="w-full h-full opacity-65 pointer-events-auto"
       />
     </div>
   );
