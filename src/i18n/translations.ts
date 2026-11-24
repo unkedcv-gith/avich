@@ -232,9 +232,9 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
       cards: [
         {
           tag: 'Qué estudiamos',
-          title: 'Eficacia, seguridad, farmacocinética y estudios de campo',
-          preview: 'Medicamentos, vacunas y nuevas tecnologías',
-          detail: 'Diseño y ejecución de protocolos de alta rigurosidad para aprobación y registro de productos veterinarios.'
+          title: 'Eficacia, seguridad, farmacocinética, pruebas de concepto y de registro, field trials.',
+          preview: 'Fármacos, biológicos, hormonales y nuevas tecnologías.',
+          detail: 'Diseño y ejecución de protocolos para aprobación y registro de productos veterinarios.'
         },
         {
           tag: 'Bajo qué marco',
@@ -244,7 +244,7 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
         },
         {
           tag: 'Para quién',
-          title: 'Laboratorios que desarrollan o registran productos',
+          title: 'Laboratorios que desarrollan y registran Productos Veterinarios.',
           preview: 'En Argentina y toda la región',
           detail: 'Flexibilidad para empresas que requieren capacidad de campo o tercerización integral de punta a punta.'
         },
@@ -252,13 +252,13 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
           tag: 'Ante quién',
           title: 'Organismos regulatorios oficiales',
           preview: 'En Argentina, SENASA y entes regionales',
-          detail: 'Confección y seguimiento proactivo de expedientes para optimizar tiempos de dictamen regulatorio.'
+          detail: 'Confección y seguimiento de expedientes para optimizar tiempos de dictamen regulatorio.'
         }
       ]
     },
     workModel: {
       tag: 'El Diferencial',
-      title: 'Un modelo de trabajo modular: el laboratorio elige cómo trabajar.',
+      title: 'Modelo de trabajo modular: el laboratorio elige cómo trabajar.',
       subtitle: 'Dos formas de acompañar el desarrollo y registro de un producto, según cuánto quiera delegar cada cliente.',
       m1: {
         tag: 'Modalidad 1',
@@ -309,17 +309,17 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
         {
           label: 'A CAMPO',
           title: 'Pruebas a campo',
-          desc: 'Estudios en condiciones reales de producción, con la red de establecimientos y profesionales con la que trabajamos en toda la región.'
+          desc: 'Estudios a campo y estudios en sistemas controlados, para pruebas oficiales de registro'
         },
         {
           label: 'REGULATORIO',
           title: 'Registro de productos',
-          desc: 'Armado del expediente, presentación ante SENASA y seguimiento del trámite. Incluido en el Paquete Completo.'
+          desc: 'Armado de expedientes, presentación ante Entes Regulatorios y seguimiento de trámites.'
         },
         {
           label: 'COMPLEMENTARIOS',
           title: 'Asesoramiento y formación',
-          desc: 'Consultoría a terceros, y charlas y capacitación en registro y lanzamiento de productos veterinarios.'
+          desc: 'Consultoría a terceros.  Charlas y capacitaciones para registro y lanzamiento de productos veterinarios.'
         }
       ]
     },
@@ -329,15 +329,15 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
       steps: [
         {
           title: 'Definición',
-          desc: 'Entendemos el producto, la indicación y el mercado de destino, y definimos qué estudios exige el registro.'
+          desc: 'Entendemos el producto, la indicación y el mercado de destino para definir los estudios que exige el registro.'
         },
         {
           title: 'Protocolo',
-          desc: 'Diseñamos el protocolo según guías VICH-GCP y la normativa local, con diseño estadístico y comité de ética cuando corresponde.'
+          desc: 'Diseñamos el protocolo según las normativas locales e internacionales (VICH-GCP), con estudios estadístico y comité de ética.'
         },
         {
           title: 'Ejecución',
-          desc: 'Conducimos el estudio a campo o en clínica, con monitoreo, registros trazables y control de calidad de los datos.'
+          desc: 'Realizamos el estudio a campo con monitoreo, registros trazables y control de calidad de los datos.'
         },
         {
           title: 'Informe y registro',
@@ -355,14 +355,14 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
       title: 'Producción y compañía,\ncon el mismo rigor.',
       subtitle: 'Selecciona una especie para conocer un ejemplo de protocolo y diseño experimental que ejecutamos bajo estándares VICH.',
       productionTitle: 'Animales de producción',
-      productionSub: 'Ensayos a corral y a campo',
+      productionSub: 'Ensayos a campo y en sistemas controlados',
       productionItems: [
         {
           name: 'Bovinos',
-          trialTitle: 'Eficacia antiparasitaria y curvas de depleción tisular (LMR)',
+          trialTitle: 'Eficacia antiparasitaria',
           trialType: 'Ensayo a campo & Bioequivalencia',
-          protocol: 'Evaluación de formulaciones inyectables y pour-on en rodeos de carne y tambos lecheros. Monitoreo de eficacia fecal (FECRT) y determinación de tiempos de retiro reglamentarios.',
-          parameters: ['VICH GL9 (GCP)', 'Curvas de retiro', 'Trazabilidad individual', 'Seguridad local']
+          protocol: 'Evaluación de formulaciones inyectables en rodeos de carne. Monitoreo de eficacia fecal (FECRT) y determinación de tiempos de retiro reglamentarios.',
+          parameters: ['VICH GL9 (GCP)', 'Trazabilidad individual', 'Seguridad local']
         },
         {
           name: 'Ovinos',

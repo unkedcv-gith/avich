@@ -185,9 +185,6 @@ export default function Species() {
                       <FlaskConical className="w-4 h-4 text-[#FD8548]" />
                       {t.species.simulatedTrial} • {currentProduction.name}
                     </span>
-                    <span className="text-xs text-gray-700 font-medium bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200">
-                      {currentProduction.trialType}
-                    </span>
                   </div>
 
                   <h5 className="text-base sm:text-lg font-bold text-[#1a1640] leading-snug">

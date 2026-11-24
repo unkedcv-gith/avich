@@ -14,7 +14,7 @@ export default function WorkModel() {
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-widest mb-3 backdrop-blur-sm border border-white/30 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-[#FD8548]" />
-            <span>{t.workModel.tag}</span>
+            <span className="text-[18px]">{t.workModel.tag}</span>
           </div>
           <h3 className="text-3xl md:text-5xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
             {t.workModel.title}
