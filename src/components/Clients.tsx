@@ -29,6 +29,12 @@ export default function Clients() {
       image: biogenesisLogo
     },
     {
+      id: 'chemo',
+      name: 'Chemo',
+      subtitle: 'Salud Animal',
+      image: chemoLogo
+    },
+    {
       id: 'boehringer-ingelheim',
       name: 'Boehringer Ingelheim',
       subtitle: 'Salud Animal',
@@ -39,12 +45,6 @@ export default function Clients() {
       name: 'SENASA',
       subtitle: 'Sanidad y Calidad Agroalimentaria',
       image: senasaLogo
-    },
-    {
-      id: 'chemo',
-      name: 'Chemo',
-      subtitle: 'Salud Animal',
-      image: chemoLogo
     }
   ];
 
