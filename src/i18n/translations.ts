@@ -116,6 +116,7 @@ export interface TranslationSchema {
   whyUs: {
     tag: string;
     title: string;
+    highlights: string[];
     p1: {
       beforeVich: string;
       vichBold: string;
@@ -424,24 +425,21 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
       members: [
         {
           role: 'SOCIO FUNDADOR · DIRECCIÓN TÉCNICA',
-          desc: 'Médico veterinario con más de 20 años en servicio técnico de la industria veterinaria. Especializado en diseño y conducción de ensayos clínicos en animales de producción.',
-          tags: ['Ensayos clínicos', 'Bovinos', 'Servicio técnico']
-        },
-        {
-          role: 'SOCIO FUNDADOR · ESTUDIOS A CAMPO',
-          desc: 'Médico veterinario con amplia experiencia en pruebas a campo y seguimiento de lotes en establecimientos productivos. Conduce los estudios en condiciones reales de producción.',
-          tags: ['Pruebas a campo', 'Farmacocinética', 'Red regional']
-        },
-        {
-          role: 'SOCIO FUNDADOR · ASUNTOS REGULATORIOS',
-          desc: 'Médico veterinario especializado en registro de productos y vinculación con organismos regulatorios. Coordina la modalidad Paquete Completo y la formación a terceros.',
-          tags: ['Registro SENASA', 'Capacitación', 'Compañía']
+          desc: 'Médico veterinario con más de 25 años de trayectoria entre la academia y la industria veterinaria. Especializado en diseño y conducción de ensayos clínicos en animales de producción.',
+          tags: []
         }
       ]
     },
     whyUs: {
-      tag: 'Por qué nos llamamos así',
+      tag: 'POR QUÉ ELEGIRNOS',
       title: 'El nombre dice lo que hacemos.',
+      highlights: [
+        'Trayectoria',
+        'Calidad',
+        'Ética',
+        'Conocimiento',
+        'Confidencialidad'
+      ],
       p1: {
         beforeVich: 'AVICH lleva adentro ',
         vichBold: 'VICH',
@@ -463,7 +461,7 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
     clients: {
       tag: 'Trayectoria y Confianza',
       title: 'Clientes que confían en nosotros',
-      subtitle: 'Acompañamos a laboratorios veterinarios líderes en cada fase del desarrollo, registro y cumplimiento normativo VICH.',
+      subtitle: 'Acompañamos a laboratorios veterinarios líderes en cada fase del desarrollo.',
       prevAria: 'Cliente anterior',
       nextAria: 'Cliente siguiente'
     },
@@ -749,23 +747,20 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
         {
           role: 'FOUNDING PARTNER · TECHNICAL DIRECTION',
           desc: 'Veterinary Doctor with over 20 years in technical service within the animal health industry. Specialized in designing and executing clinical trials in livestock.',
-          tags: ['Clinical trials', 'Bovine', 'Technical service']
-        },
-        {
-          role: 'FOUNDING PARTNER · FIELD STUDIES',
-          desc: 'Veterinary Doctor with vast experience in field trials and herd tracking in commercial production facilities. Leads studies under real-world production conditions.',
-          tags: ['Field trials', 'Pharmacokinetics', 'Regional network']
-        },
-        {
-          role: 'FOUNDING PARTNER · REGULATORY AFFAIRS',
-          desc: 'Veterinary Doctor specialized in product registration and liaison with regulatory agencies. Coordinates the Full Package modality and corporate training programs.',
-          tags: ['SENASA registration', 'Corporate training', 'Companion animals']
+          tags: []
         }
       ]
     },
     whyUs: {
       tag: 'Why this name',
       title: 'The name reflects what we do.',
+      highlights: [
+        'Track Record',
+        'Quality',
+        'Ethics',
+        'Knowledge',
+        'Confidentiality'
+      ],
       p1: {
         beforeVich: 'AVICH carries within its name ',
         vichBold: 'VICH',
@@ -1073,23 +1068,20 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
         {
           role: 'SÓCIO FUNDADOR · DIREÇÃO TÉCNICA',
           desc: 'Médico veterinário com mais de 20 anos em serviço técnico na indústria veterinária. Especializado no desenho e condução de ensaios clínicos em animais de produção.',
-          tags: ['Ensaios clínicos', 'Bovinos', 'Serviço técnico']
-        },
-        {
-          role: 'SÓCIO FUNDADOR · ESTUDOS A CAMPO',
-          desc: 'Médico veterinário com ampla experiência em testes a campo e acompanhamento de lotes em fazendas produtivas. Conduz os estudos em condições reais de produção.',
-          tags: ['Testes a campo', 'Farmacocinética', 'Rede regional']
-        },
-        {
-          role: 'SÓCIO FUNDADOR · ASSUNTOS REGULATÓRIOS',
-          desc: 'Médico veterinário especializado no registro de produtos e relacionamento com órgãos regulatórios. Coordena a modalidade Pacote Completo e capacitação a terceiros.',
-          tags: ['Registro SENASA', 'Capacitação', 'Companhia']
+          tags: []
         }
       ]
     },
     whyUs: {
       tag: 'Por que nos chamamos assim',
       title: 'O nome diz o que fazemos.',
+      highlights: [
+        'Trajetória',
+        'Qualidade',
+        'Ética',
+        'Conhecimento',
+        'Confidencialidade'
+      ],
       p1: {
         beforeVich: 'A AVICH traz no seu nome o ',
         vichBold: 'VICH',

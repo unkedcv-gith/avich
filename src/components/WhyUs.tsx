@@ -30,12 +30,9 @@ export default function WhyUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="mb-6">
+            <div>
               <img src={logo} alt="AVICH" className="w-full max-w-[280px] md:max-w-[400px] h-auto object-contain" />
             </div>
-            <p className="text-gray-600 text-sm leading-relaxed max-w-sm">
-              {t.whyUs.vichFooter}
-            </p>
           </motion.div>
 
           <motion.div
@@ -44,21 +41,17 @@ export default function WhyUs() {
             viewport={{ once: true }}
           >
             <h2 className="text-[#FD8548] font-bold tracking-widest uppercase text-sm mb-3">{t.whyUs.tag}</h2>
-            <h3 className="text-3xl md:text-5xl font-extrabold text-[#1a1640] mb-8 leading-tight">
-              {t.whyUs.title}
-            </h3>
-            
-            <div className="space-y-6 text-gray-700 text-lg font-light leading-relaxed">
-              <p>
-                {t.whyUs.p1.beforeVich}
-                <strong className="text-[#1a1640] font-bold">{t.whyUs.p1.vichBold}</strong>
-                {t.whyUs.p1.afterVich}
-                <strong className="text-[#1a1640] font-bold">{t.whyUs.p1.aBold}</strong>
-                {t.whyUs.p1.afterA}
-              </p>
-              <p>
-                {t.whyUs.p2}
-              </p>
+            <div className="bg-white border border-[#6A00C8]/15 rounded-2xl md:rounded-3xl p-6 sm:p-8 shadow-sm">
+              <ul className="space-y-3 sm:space-y-3.5">
+                {t.whyUs.highlights.map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-3">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#6A00C8] shrink-0" />
+                    <span className="text-xl sm:text-2xl font-extrabold text-[#1a1640] leading-snug">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
 
