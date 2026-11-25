@@ -221,12 +221,12 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
         },
         samples: {
           suffix: 'muestras mensuales',
-          desc: 'procesadas y analizadas con trazabilidad y alta rigurosidad'
+          desc: 'procesadas y analizadas con trazabilidad y alta rigurosidad técnica'
         }
       },
       tag: 'Quiénes Somos',
-      heading: 'Una CRO veterinaria hecha por veterinarios.',
-      p1: 'AVICH es una Contract Research Organization especializada en productos veterinarios. Somos un equipo interdisciplinario con más de 20 años en la industria, especializado en la conducción de estudios clínicos en animales de producción y de compañía.',
+      heading: 'Una CRO veterinaria fundada y gestionada por veterinarios',
+      p1: 'AVICH es una Contract Research Organization especializada en productos veterinarios. Somos un equipo interdisciplinario con más de 20 años en la industria de salud animal, especializado en la conducción de estudios clínicos en animales de producción y de compañía.',
       p2: 'Trabajamos junto a universidades y profesionales de toda la región para ofrecer un servicio integral: desde el diseño del protocolo hasta el registro, cumpliendo los requisitos vigentes de los entes reguladores de cada país.',
       seeMore: 'Ver más',
       cards: [
@@ -259,7 +259,7 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
     workModel: {
       tag: 'El Diferencial',
       title: 'Modelo de trabajo modular: el laboratorio elige cómo trabajar.',
-      subtitle: 'Dos formas de acompañar el desarrollo y registro de un producto, según cuánto quiera delegar cada cliente.',
+      subtitle: 'Dos formas de acompañar el desarrollo y registro de un producto, acorde a las capacidades de cada cliente.',
       m1: {
         tag: 'Modalidad 1',
         title: 'Soporte Técnico',
@@ -269,21 +269,22 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
           'Informe final auditable, listo para presentar',
           'El laboratorio conserva la gestión regulatoria'
         ],
-        footer: 'Para laboratorios con área regulatoria propia que necesitan capacidad de ejecución a campo.'
+        footer: 'Destinado a: laboratorios con área regulatoria propia que necesitan capacidad de ejecución a campo.'
       },
       m2: {
         tag: 'Modalidad 2',
-        title: 'Paquete Completo',
+        title: 'Soporte Integral',
         desc: 'AVICH se encarga de todo el proceso de punta a punta: diseño, ejecución, informes y la presentación del expediente ante el organismo regulatorio.',
         bullets: [
-          'Todo lo del Soporte Técnico',
-          'Armado y presentación del expediente de registro',
-          'Seguimiento del trámite hasta la aprobación'
+          'Diseño de protocolo y ejecución del estudio.',
+          'Informe final auditable, listo para presentar.',
+          'Armado y presentación del expediente de registro.',
+          'Seguimiento del trámite hasta la aprobación.'
         ],
         footer: 'Para laboratorios que quieren un único interlocutor desde la idea hasta el registro.'
       },
-      noteBold: 'Ambas modalidades trabajan bajo el mismo estándar.',
-      noteText: 'Cambia cuánto delega el laboratorio, no la calidad del estudio ni la confidencialidad con la que se maneja cada proyecto.'
+      noteBold: 'Ambas modalidades trabajan bajo los mismos estándares de calidad, confidencialidad, y siguiendo las guías correspondientes.',
+      noteText: 'Nos adaptamos a las capacidades del cliente, fortaleciendo y eficientizando los tiempos del proceso.'
     },
     services: {
       tag: 'Servicios',
@@ -294,7 +295,7 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
         {
           label: 'ENSAYOS CLÍNICOS',
           title: 'Estudios de eficacia',
-          desc: 'Demostramos que el producto hace lo que promete, con diseño estadístico y controles adecuados a la especie y la indicación.'
+          desc: 'Buscan demostrar que el producto cumple las funciones para las cuales fue desarrollado, con diseño estadístico y controles adecuados a la especie y a la indicación.'
         },
         {
           label: 'ENSAYOS CLÍNICOS',
