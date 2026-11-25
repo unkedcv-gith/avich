@@ -79,6 +79,53 @@ function FelinosIcon({ className = "w-7 h-7 md:w-9 md:h-9" }: { className?: stri
   );
 }
 
+function CerdosIcon({ className = "w-7 h-7 md:w-9 md:h-9" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 192.17 185.42" className={className}>
+      {/* Head and ears */}
+      <path
+        d="M57,49 C47,30 33,24 27,31 C21,38 25,62 35,76 C29,92 31,115 44,132 C58,150 77,158 96,158 C115,158 134,150 148,132 C161,115 163,92 157,76 C167,62 171,38 165,31 C159,24 145,30 135,49 C123,43 110,40 96,40 C82,40 69,43 57,49 Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="11"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Inner ear folds */}
+      <path
+        d="M36,44 C41,50 45,58 47,66"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M156,44 C151,50 147,58 145,66"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="8"
+        strokeLinecap="round"
+      />
+      {/* Eyes */}
+      <circle cx="66" cy="83" r="6.8" fill="currentColor" />
+      <circle cx="126" cy="83" r="6.8" fill="currentColor" />
+      {/* Snout */}
+      <ellipse
+        cx="96"
+        cy="118"
+        rx="29"
+        ry="20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="10"
+      />
+      {/* Nostrils */}
+      <ellipse cx="85" cy="118" rx="4.8" ry="7.2" fill="currentColor" />
+      <ellipse cx="107" cy="118" rx="4.8" ry="7.2" fill="currentColor" />
+    </svg>
+  );
+}
+
 export default function Species() {
   const [selectedProduction, setSelectedProduction] = useState<number>(0);
   const [selectedCompanion, setSelectedCompanion] = useState<number>(0);
@@ -86,8 +133,11 @@ export default function Species() {
 
   const productionIcons = [
     <BovinosIcon key="bovinos" />,
-    <OvinosIcon key="ovinos" />,
-    <CaprinosIcon key="caprinos" />,
+    <div key="ovinos-caprinos" className="flex items-center gap-1">
+      <OvinosIcon />
+      <CaprinosIcon />
+    </div>,
+    <CerdosIcon key="cerdos" />,
     <EquinosIcon key="equinos" />,
     <AvesIcon key="aves" />
   ];
@@ -284,9 +334,6 @@ export default function Species() {
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#C800D6] bg-purple-100 px-3 py-1 rounded-lg border border-purple-200">
                       <FileText className="w-4 h-4 text-[#C800D6]" />
                       {t.species.simulatedTrial} • {currentCompanion.name}
-                    </span>
-                    <span className="text-xs text-gray-700 font-medium bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200">
-                      {currentCompanion.trialType}
                     </span>
                   </div>
 

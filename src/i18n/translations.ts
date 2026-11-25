@@ -362,34 +362,34 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
           trialTitle: 'Eficacia antiparasitaria',
           trialType: 'Ensayo a campo & Bioequivalencia',
           protocol: 'Evaluación de formulaciones inyectables en rodeos de carne. Monitoreo de eficacia fecal (FECRT) y determinación de tiempos de retiro reglamentarios.',
-          parameters: ['VICH GL9 (GCP)', 'Trazabilidad individual', 'Seguridad local']
+          parameters: ['VICH GL9 (GCP)', 'Trazabilidad individual']
         },
         {
-          name: 'Ovinos',
-          trialTitle: 'Eficacia frente a nematodos gastrointestinales y ectoparásitos',
-          trialType: 'Ensayo a corral y a campo',
-          protocol: 'Estudio controlado de eficacia terapéutica en majadas comerciales con desafío natural y artificial. Monitoreo de coprocultivos seriados y tolerancia tisular.',
-          parameters: ['Eficacia fecal >95%', 'Evaluación dermatológica', 'Tiempos de retiro en lana/carne']
+          name: 'Ovinos y Caprinos',
+          trialTitle: 'Eficacia frente a ectoparásitos',
+          trialType: 'Ensayo a corral, campo y estudio PK/PD',
+          protocol: 'Estudio controlado de eficacia terapéutica en majadas con desafío natural y artificial. Sarana, melophagos y piojos.',
+          parameters: ['Eficacia de acuerdo a requerimientos oficiales o de investigación']
         },
         {
-          name: 'Caprinos',
-          trialTitle: 'Farmacocinética comparada y residuos en leche caprina',
-          trialType: 'Estudio PK/PD y Seguridad',
-          protocol: 'Caracterización de perfiles plasmáticos y excreción láctea en animales de tambo caprino bajo esquemas de dosificación escalonada y análisis cromatográfico por HPLC/MS.',
-          parameters: ['Perfil farmacocinético', 'Residuos lácteos', 'Monitoreo bioquímico']
+          name: 'Cerdos',
+          trialTitle: 'Farmacocinética comparada',
+          trialType: 'Ensayo en granja experimental',
+          protocol: 'Caracterización de perfiles plasmáticos y con análisis cromatográfico por HPLC.',
+          parameters: ['VICH GL9 (GCP)', 'Ganancia diaria de peso', 'Trazabilidad por lote']
         },
         {
           name: 'Equinos',
           trialTitle: 'Seguridad y eficacia de antiinflamatorios no esteroides (AINEs)',
           trialType: 'Ensayo clínico en equinos deportivos',
-          protocol: 'Evaluación de respuesta analgésica y antiinflamatoria en patologías musculoesqueléticas, con seguimiento termográfico, ecográfico y control estricto de farmacovigilancia.',
+          protocol: 'Evaluación de respuesta analgésica y antiinflamatoria en patologías musculoesqueléticas, con seguimiento termográfico, ecográfico y control clínico.',
           parameters: ['Control antidoping VICH', 'Tolerancia gástrica', 'Seguimiento ecográfico']
         },
         {
           name: 'Aves',
-          trialTitle: 'Inmunogenicidad de biológicos y promotores zootécnicos',
+          trialTitle: 'Inmunogenicidad de biológicos',
           trialType: 'Ensayo en parrilleros y ponedoras',
-          protocol: 'Evaluación serológica de anticuerpos post-vacunación, índice de conversión alimenticia y monitoreo de lesiones intestinales (score de Johnson & Reid) en galpones experimentales.',
+          protocol: 'Evaluación serológica de anticuerpos post-vacunación. Puebas de desafío clínico (Challenge Test)',
           parameters: ['Conversión alimenticia', 'Titulación serológica ELISA', 'Residuos en huevo y carne']
         }
       ],
@@ -400,15 +400,15 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
           name: 'Caninos',
           trialTitle: 'Eficacia clínica multicéntrica en dolor articular crónico (OA)',
           trialType: 'Ensayo clínico ciego con propietarios',
-          protocol: 'Estudio en clínicas asociadas con consentimiento informado. Evaluación de mejoría funcional mediante escalas validadas (CBPI / LOAD) y parámetros hematológicos seriados.',
+          protocol: 'Estudio en clínicas asociadas con consentimiento informado. Evaluación de mejoría funcional mediante escalas validadas (CBPI / LOAD) y parámetros hematológicos y radiológicos seriados.',
           parameters: ['VICH GL9 (GCP)', 'Consentimiento informado', 'Escalas validadas CBPI', 'Doble ciego']
         },
         {
           name: 'Felinos',
-          trialTitle: 'Pruebas de palatabilidad y tolerancia en patologías renales',
+          trialTitle: 'Pruebas de palatabilidad y tolerancia',
           trialType: 'Estudio de aceptación y seguridad específica',
-          protocol: 'Evaluación de aceptación espontánea de presentaciones orales en gatos hogareños y seguimiento de seguridad renal (creatinina, SDMA, urea) con visitas programadas.',
-          parameters: ["Test de dos opciones (palatabilidad)", 'Seguridad renal SDMA', "Bienestar animal 'Cat-Friendly'"]
+          protocol: 'Evaluación de aceptación espontánea de presentaciones orales en gatos hogareños y seguimiento de seguridad.',
+          parameters: ["Test de dos opciones (palatabilidad)", "Bienestar animal 'Cat-Friendly'"]
         }
       ],
       simulatedTrial: 'Ensayo simulado',
@@ -417,9 +417,9 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
     },
     team: {
       tag: 'Equipo',
-      title: 'Tres veterinarios con años de servicio técnico y pruebas a campo.',
-      subtitle: 'Los socios de AVICH vienen de la industria: conocen el trabajo desde el laboratorio, desde el campo y desde el expediente regulatorio.',
-      quote: '"Sabemos lo que un laboratorio necesita porque estuvimos de ese lado: diseñando ensayos, acompañando registros y resolviendo problemas a campo."',
+      title: 'Equipo interdisciplinario con amplia trayectoria y conocimiento en el desarrollo y registro de productos veterinarios.',
+      subtitle: 'Los socios de AVICH vienen de la industria: conocen el trabajo desde el laboratorio, al campo y desde el campo al registro.',
+      quote: 'Sabemos lo que un laboratorio necesita porque estuvimos de ese lado: diseñando ensayos, resolviendo problemas a campo y acompañando el registro.',
       members: [
         {
           role: 'SOCIO FUNDADOR · DIRECCIÓN TÉCNICA',
@@ -689,18 +689,18 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
           parameters: ['VICH GL9 (GCP)', 'Withdrawal curves', 'Individual traceability', 'Local tissue safety']
         },
         {
-          name: 'Ovine',
-          trialTitle: 'Efficacy against gastrointestinal nematodes and ectoparasites',
-          trialType: 'Pen & Field Trial',
-          protocol: 'Controlled clinical efficacy study in commercial flocks under natural and artificial challenge. Sequential fecal cultures and dermatological tolerance assessments.',
-          parameters: ['Fecal efficacy >95%', 'Dermatological score', 'Wool/meat withdrawal times']
+          name: 'Ovine & Caprine',
+          trialTitle: 'Antiparasitic efficacy, comparative pharmacokinetics, and residue depletion',
+          trialType: 'Pen, Field & PK/PD Study',
+          protocol: 'Controlled clinical efficacy studies against gastrointestinal nematodes and ectoparasites in flocks, alongside plasma pharmacokinetics and milk residue characterization under VICH standards.',
+          parameters: ['Fecal efficacy >95%', 'Pharmacokinetic profile', 'Milk & meat withdrawal']
         },
         {
-          name: 'Caprine',
-          trialTitle: 'Comparative pharmacokinetics and residue depletion in goat milk',
-          trialType: 'PK/PD & Safety Study',
-          protocol: 'Characterization of plasma concentration profiles and milk excretion in dairy goats following escalated dose regimens and HPLC/MS chromatographic analysis.',
-          parameters: ['Pharmacokinetic profile', 'Milk residue depletion', 'Serum biochemistry monitoring']
+          name: 'Swine',
+          trialTitle: 'Production efficacy, respiratory health, and bioequivalence',
+          trialType: 'Experimental farm trial',
+          protocol: 'Clinical efficacy evaluation against respiratory and enteric conditions in nursery and finishing phases. Monitoring average daily gain (ADG), feed conversion, and tissue safety.',
+          parameters: ['VICH GL9 (GCP)', 'Average daily gain', 'Batch traceability']
         },
         {
           name: 'Equine',
@@ -1013,18 +1013,18 @@ export const translations: Record<'es' | 'en' | 'pt', TranslationSchema> = {
           parameters: ['VICH GL9 (GCP)', 'Curvas de carência', 'Rastreabilidade individual', 'Segurança tecidual']
         },
         {
-          name: 'Ovinos',
-          trialTitle: 'Eficácia contra nematódeos gastrintestinais e ectoparasitas',
-          trialType: 'Ensaio em piquete e a campo',
-          protocol: 'Estudo controlado de eficácia terapêutica em rebanhos comerciais com desafio natural e artificial. Coproculturas seriadas e tolerância tecidual.',
-          parameters: ['Eficácia fecal >95%', 'Avaliação dermatológica', 'Carência em lã/carne']
+          name: 'Ovinos e Caprinos',
+          trialTitle: 'Eficácia antiparasitária, farmacocinética comparada e resíduos',
+          trialType: 'Ensaio a campo & Estudo PK/PD',
+          protocol: 'Estudos controlados de eficácia terapêutica contra nematódeos gastrintestinais e ectoparasitas em rebanhos, além de caracterização farmacocinética e resíduos no leite sob normas VICH.',
+          parameters: ['Eficácia fecal >95%', 'Perfil farmacocinético', 'Carência em leite e carne']
         },
         {
-          name: 'Caprinos',
-          trialTitle: 'Farmacocinética comparada e resíduos em leite caprino',
-          trialType: 'Estudo PK/PD e Segurança',
-          protocol: 'Caracterização de perfis plasmáticos e excreção no leite em rebanhos caprinos leiteiros sob regimes de dosagem escalonada e análise por HPLC/MS.',
-          parameters: ['Perfil farmacocinético', 'Resíduos no leite', 'Monitoramento bioquímico']
+          name: 'Suínos',
+          trialTitle: 'Eficácia produtiva, sanidade respiratória e bioequivalência',
+          trialType: 'Ensaio em granja experimental',
+          protocol: 'Avaliação de eficácia clínica contra afecções respiratórias e entéricas nas fases de creche e terminação. Controle de ganho de peso diário, conversão alimentar e segurança.',
+          parameters: ['VICH GL9 (GCP)', 'Ganho de peso diário', 'Rastreabilidade por lote']
         },
         {
           name: 'Equinos',
